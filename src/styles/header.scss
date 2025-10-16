@@ -4,7 +4,7 @@
   width: 100%;
   color: #fff;
   direction: rtl;
-  font-family: 'Cairo', sans-serif;
+  font-family: 'Noor Regular', sans-serif;
 }
 
 /* 🔹 Upper Navbar */
@@ -13,7 +13,7 @@
   color: #fff;
   font-size: 13px;
   padding: 10px 0;
-  font-family: 'Cairo', sans-serif;
+  font-family: 'Noor Regular', sans-serif;
   direction: rtl;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -265,7 +265,7 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Noor Regular', sans-serif;
     position: relative;
     font-weight: 500;
     color: #222;
@@ -281,10 +281,10 @@
   
     .number {
       font-weight: 700;
-      color: #000;
+      color: #0c6776;
       font-size: 18px;
       letter-spacing: 1px;
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Noor Regular', sans-serif;
       position: relative;
       padding-bottom: 3px;
       
@@ -536,19 +536,15 @@
 }
 /* 🔸 News Ticker */
 .news-ticker {
-  background: linear-gradient(135deg,
-  lighten($primary-color, 5%) 0%,
-    $primary-color 100%);
-  color: #fff;
+  background: rgba(232, 209, 209, 0.166);
+  color: #1a1818;
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-
-  // ✅ تحديد العرض وتوسيط الشريط
-  width: 85%; // ممكن تخليها 80% لو عايزة أضيق
+  width: 60%; 
   max-width: 1200px;
-  margin: 10px auto; // توسيط العنصر في الصفحة
+  margin: 10px auto 10px 10px; 
 
   .container {
     display: flex;
@@ -563,7 +559,7 @@
     font-size: 20px;
     margin-right: 10px;
     animation: pulse 2s ease-in-out infinite;
-    color: rgba(255, 255, 255, 0.95);
+    color: $secondary-color;
   }
 
   @keyframes pulse {
@@ -596,13 +592,13 @@
     &::before {
       left: 0;
       border-radius: 20px;
-      background: linear-gradient(to right, rgba(131, 15, 15, 0.359), transparent);
+      background: linear-gradient(to right,  rgba(232, 209, 209, 0.425), transparent);
     }
 
     &::after {
       right: 0;
       border-radius: 20px;
-      background: linear-gradient(to left, rgba(131, 15, 15, 0.359), transparent);
+      background: linear-gradient(to left,  rgba(232, 209, 209, 0.425), transparent);
     }
   }
 

@@ -7,8 +7,8 @@ export default function Header() {
   return (
     <header className="header">
       <UpperNavbar />
-      <MainNavbar />
       <NewsTicker />
+      <MainNavbar />
     </header>
   );
 }

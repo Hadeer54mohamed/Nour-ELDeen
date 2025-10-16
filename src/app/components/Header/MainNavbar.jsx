@@ -104,7 +104,7 @@ export default function MainNavbar() {
   <li>
     <Link href="/contact" onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/24-hours.png" alt="Contact" width={24} height={24} />
+        <Image src="/icons/24-7.png" alt="Contact" width={24} height={24} />
         <span>اتصل بنا</span>
       </div>
     </Link>

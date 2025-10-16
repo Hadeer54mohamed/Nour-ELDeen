@@ -3,6 +3,21 @@
 @import "footer";
 @import "sections";
 
+// تعريفات الخطوط
+@font-face {
+  font-family: 'Noor Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/Fonts/noor/Noor Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Agency FB Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/Fonts/agencyfb/AGENCYB.woff') format('woff');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

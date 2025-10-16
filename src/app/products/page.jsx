@@ -1,19 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import "../../../styles/sections.scss";
-import productsData from "./ProductsData.json";
+import "../../styles/products.scss";
+import productsData from "../components/Products/ProductsData.json";
 
-const ProductsSection = () => {
-  const categories = ["الكل", "البن", "التوابل", "المكسرات", "الحبوب"];
-  const [selectedCategory, setSelectedCategory] = useState("الكل");
+const ProductsPage = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
-
-  const filteredProducts =
-    selectedCategory === "الكل"
-      ? productsData
-      : productsData.filter((p) => p.category === selectedCategory);
 
   const openQuickView = (product) => {
     setSelectedProduct(product);
@@ -35,27 +28,13 @@ const ProductsSection = () => {
           </p>
         </div>
 
-        <div className="products-filter">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`filter-btn ${
-                selectedCategory === category ? "active" : ""
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
         <div className="products-grid">
-          {filteredProducts.map((product, index) => (
-            <div className="product-card" key={index}>
+          {productsData.map((product, index) => (
+            <div key={index} className="product-card">
               <div className="product-image-wrapper">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt={product.name || "منتج من منتجات نور الدين"}
                   width={300}
                   height={300}
                   className="product-image"
@@ -76,6 +55,7 @@ const ProductsSection = () => {
         </div>
       </div>
 
+      {/* نافذة العرض السريع */}
       {isQuickViewOpen && selectedProduct && (
         <div className="quickview-overlay" onClick={closeQuickView}>
           <div className="quickview-modal" onClick={(e) => e.stopPropagation()}>
@@ -104,12 +84,6 @@ const ProductsSection = () => {
                     <li>تعبئة يومية طازجة</li>
                   </ul>
                 </div>
-               {/*  <div className="quickview-actions">
-                  <button className="btn-primary">اطلب الآن</button>
-                  <button className="btn-secondary" onClick={closeQuickView}>
-                    إغلاق
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>
@@ -119,4 +93,4 @@ const ProductsSection = () => {
   );
 };
 
-export default ProductsSection;
+export default ProductsPage;

@@ -1,0 +1,151 @@
+@import "variables";
+
+.products-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  direction: rtl;
+  font-family:'Noor Regular', sans-serif;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  // دوائر الخلفية
+  &::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(180, 64, 65, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(12, 103, 118, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .products-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    animation: fadeInUp 1.2s ease-out;
+  }
+
+  .product-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid rgba($secondary-color, 0.15);
+      border-radius: 20px;
+      z-index: -1;
+      transition: all 0.4s ease;
+    }
+
+    &:hover::before {
+      top: -15px;
+      right: -15px;
+      border-color: rgba($secondary-color, 0.35);
+    }
+
+    .product-image img {
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .product-title {
+      color: $primary-color;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .product-description {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+  }
+
+  // الموبايل
+  @media (max-width: 992px) {
+    padding: 70px 0;
+
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  // الأنيميشن
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

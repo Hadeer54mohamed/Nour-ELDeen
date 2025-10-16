@@ -24,13 +24,19 @@ const FooterUpper = () => {
               منذ عام 1920، متخصصون في بيع أجود المواد الغذائية بخبرة تمتد لأجيال.
             </p>
             <div className="footer-socials">
-              <a href="#" aria-label="Facebook" title="Facebook">
+              <a href="https://www.facebook.com/1920NOURELDEEN"
+              target="_blank" rel="noopener noreferrer"
+               aria-label="Facebook" title="Facebook">
                 <FaFacebookF />
               </a>
-              <a href="#" aria-label="Instagram" title="Instagram">
+              <a href="https://www.instagram.com/noureldeen_1920/" 
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram" title="Instagram">
                 <FaInstagram />
               </a>
-              <a href="#" aria-label="WhatsApp" title="WhatsApp">
+              <a href="https://api.whatsapp.com/send/?phone=201151662662&text&type=phone_number&app_absent=0" 
+              target="_blank" rel="noopener noreferrer"
+              aria-label="WhatsApp" title="WhatsApp">
                 <FaWhatsapp />
               </a>
             </div>
