@@ -55,7 +55,7 @@ const ProductsPage = () => {
         </div>
       </div>
 
-      {/* نافذة العرض السريع */}
+      {/* quick view  */}
       {isQuickViewOpen && selectedProduct && (
         <div className="quickview-overlay" onClick={closeQuickView}>
           <div className="quickview-modal" onClick={(e) => e.stopPropagation()}>

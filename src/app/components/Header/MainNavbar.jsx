@@ -105,7 +105,15 @@ export default function MainNavbar() {
     <Link href="/contact" onClick={closeMenu}>
       <div className="nav-item">
         <Image src="/icons/24-7.png" alt="Contact" width={24} height={24} />
-        <span>اتصل بنا</span>
+        <span>تواصل معنا</span>
+      </div>
+    </Link>
+  </li>
+  <li>
+    <Link href="/branches" onClick={closeMenu}>
+      <div className="nav-item">
+        <Image src="/icons/branches.png" alt="branches" width={24} height={24} />
+        <span>فروعنا</span>
       </div>
     </Link>
   </li>

@@ -125,7 +125,7 @@ $color-end: #b44041;
     }
   }
 
-  // 📱 استجابة للتابلت
+  // 📱  tablet
   @media (max-width: 1024px) {
     height: 70vh;
     min-height: 450px;
@@ -148,7 +148,7 @@ $color-end: #b44041;
     }
   }
 
-  // 📱 استجابة للموبايل
+  // 📱 mobile
   @media (max-width: 768px) {
     height: 60vh;
     min-height: 400px;
@@ -199,7 +199,7 @@ $color-end: #b44041;
     }
   }
 
-  // 📱 موبايل صغير
+  // 📱 mobile
   @media (max-width: 480px) {
     height: 55vh;
     min-height: 350px;
@@ -619,7 +619,6 @@ $color-end: #b44041;
     }
   }
 
-  /* الفلتر */
   .products-filter {
     display: flex;
     justify-content: center;
@@ -655,7 +654,6 @@ $color-end: #b44041;
     }
   }
 
-  /* كروت المنتجات */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
@@ -1049,13 +1047,6 @@ $color-end: #b44041;
   }
 }
 
-
-
-.contact-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, $secondary-color 0%, $primary-color 100%);
-  color: white;
-}
 
 .quickview-overlay {
   position: fixed;

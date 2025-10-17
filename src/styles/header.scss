@@ -93,7 +93,6 @@
       opacity: 0.95;
     }
   
-    /* 🔹 الخط الفاصل */
     .contact-item::after {
       content: "";
       position: absolute;
@@ -180,11 +179,10 @@
     }
   }
 
-  /* 🔹 Links (Red style) */
   .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 10px;
     padding: 0;
     margin: 0;
     justify-content: center;
@@ -339,7 +337,7 @@
   }
 }
 
-/* 📱 Responsive Design للموبايل */
+/* 📱 Responsive mobile  */
 @media (max-width: 768px) {
   .main-navbar {
     padding: 10px 0;
@@ -460,7 +458,6 @@
     }
   }
 
-  /* Overlay للخلفية */
   body.menu-open::after {
     content: '';
     position: fixed;
@@ -534,7 +531,7 @@
     }
   }
 }
-/* 🔸 News Ticker */
+/*  News Ticker */
 .news-ticker {
   background: rgba(232, 209, 209, 0.166);
   color: #1a1818;

@@ -9,7 +9,6 @@ const FooterUpper = () => {
     <footer className="footer-upper">
       <div className="container">
         <div className="footer-columns">
-          {/* About */}
           <div className="footer-col about">
             <div className="footer-logo">
               <Image
@@ -42,18 +41,17 @@ const FooterUpper = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="footer-col links">
             <h3>روابط سريعة</h3>
             <ul>
-              <li><a href="#hero">الرئيسية</a></li>
-              <li><a href="#products">منتجاتنا</a></li>
-              <li><a href="#story">قصتنا</a></li>
-              <li><a href="#branches">فروعنا</a></li>
+              <li><a href="/">الرئيسية</a></li>
+              <li><a href="/products">منتجاتنا</a></li>
+              <li><a href="/about">قصتنا</a></li>
+              <li><a href="/branches">فروعنا</a></li>
+              <li><a href="/contact"> تواصل معنا</a></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div className="footer-col contact">
             <h3>تواصل معنا</h3>
             <div className="contact-item">
