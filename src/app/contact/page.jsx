@@ -1,9 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/contact.scss";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const ContactPage = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowSuccess(true);
+    e.target.reset();
+    
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
+  };
+
   return (
     <section className="contact-section">
       <div className="container">
@@ -31,7 +43,12 @@ const ContactPage = () => {
             </ul>
           </div>
 
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={handleSubmit}>
+            {showSuccess && (
+              <div className="success-message">
+                ✓ تم إرسال رسالتك بنجاح! شكراً لكم للتواصل معنا
+              </div>
+            )}
             <input type="text" placeholder="الاسم الكامل" required />
             <input type="email" placeholder="البريد الإلكتروني" required />
             <textarea placeholder="رسالتك" rows="5" required></textarea>

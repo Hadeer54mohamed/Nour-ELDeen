@@ -3,7 +3,6 @@
 @import "footer";
 @import "sections";
 
-// تعريفات الخطوط
 @font-face {
   font-family: 'Noor Regular';
   font-style: normal;
@@ -55,13 +54,11 @@ html, body {
   direction: rtl;
 }
 
-/* Links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Utilities */
 .section-padding {
   padding: 80px 0;
 }
