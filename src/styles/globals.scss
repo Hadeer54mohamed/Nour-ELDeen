@@ -51,7 +51,26 @@ html, body {
   color: $dark-text;
   background-color: #fff;
   overflow-x: hidden;
+}
+
+html[dir="rtl"] {
   direction: rtl;
+  font-family: $font-noor;
+  
+  * {
+    direction: rtl;
+    font-family: $font-noor;
+  }
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+  font-family: $font-agency;
+  
+  * {
+    direction: ltr;
+    font-family: $font-agency;
+  }
 }
 
 a {

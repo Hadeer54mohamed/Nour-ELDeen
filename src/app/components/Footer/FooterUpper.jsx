@@ -1,10 +1,15 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 import "../../../styles/footer.scss";
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const FooterUpper = () => {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const locale = useLocale();
+
   return (
     <footer className="footer-upper">
       <div className="container">
@@ -20,7 +25,7 @@ const FooterUpper = () => {
               />
             </div>
             <p className="footer-desc">
-              منذ عام 1920، متخصصون في بيع أجود المواد الغذائية بخبرة تمتد لأجيال.
+              {t("description")}
             </p>
             <div className="footer-socials">
               <a href="https://www.facebook.com/1920NOURELDEEN"
@@ -42,23 +47,23 @@ const FooterUpper = () => {
           </div>
 
           <div className="footer-col links">
-            <h3>روابط سريعة</h3>
+            <h3>{t("quickLinks")}</h3>
             <ul>
-              <li><a href="/">الرئيسية</a></li>
-              <li><a href="/products">منتجاتنا</a></li>
-              <li><a href="/about">قصتنا</a></li>
-              <li><a href="/branches">فروعنا</a></li>
-              <li><a href="/contact"> تواصل معنا</a></li>
+              <li><a href={`/${locale}`}>{tNav("home")}</a></li>
+              <li><a href={`/${locale}/products`}>{tNav("products")}</a></li>
+              <li><a href={`/${locale}/about`}>{tNav("about")}</a></li>
+              <li><a href={`/${locale}/branches`}>{tNav("branches")}</a></li>
+              <li><a href={`/${locale}/contact`}>{tNav("contact")}</a></li>
             </ul>
           </div>
 
           <div className="footer-col contact">
-            <h3>تواصل معنا</h3>
+            <h3>{t("contactUs")}</h3>
             <div className="contact-item">
               <FaMapMarkerAlt className="contact-icon" />
               <div className="contact-text">
-                <p>فرع شارع البحر – طنطا</p>
-                <p>فرع الاستاد – طنطا</p>
+                <p>{t("branch1")}</p>
+                <p>{t("branch2")}</p>
               </div>
             </div>
             <div className="contact-item">

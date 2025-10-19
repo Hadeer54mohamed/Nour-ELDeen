@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import "../../../styles/sections.scss";
-import storyData from "./storyData.json";
 
 const StorySection = () => {
-  const { title, subtitle, description, quote, image, slogan } = storyData;
+  const t = useTranslations("story");
 
   return (
     <section className="story-section">
@@ -13,7 +13,7 @@ const StorySection = () => {
         <div className="story-wrapper">
           <div className="story-image-wrapper">
             <Image
-              src={image}
+              src="/images/hero/b&w.png"
               alt="Noureldeen Story"
               width={500}
               height={500}
@@ -22,13 +22,13 @@ const StorySection = () => {
             />
           </div>
           <div className="story-content">
-            <h3 className="story-subtitle">{subtitle}</h3>
-            <h2 className="story-title">{title}</h2>
-            <p className="story-description">{description}</p>
+            <h3 className="story-subtitle">{t("subtitle")}</h3>
+            <h2 className="story-title">{t("title")}</h2>
+            <p className="story-description">{t("description")}</p>
             <blockquote className="story-quote">
-              "{quote}"
+              "{t("quote")}"
             </blockquote>
-            <p className="story-slogan">{slogan}</p>
+            <p className="story-slogan">{t("slogan")}</p>
           </div>
         </div>
       </div>

@@ -1,48 +1,16 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
-export default function MainNavbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("menu-open");
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.classList.remove("menu-open");
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.classList.remove("menu-open");
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const handleOverlayClick = (e) => {
-      if (menuOpen && e.target.classList.contains("menu-open")) {
-        closeMenu();
-      }
-    };
-
-    document.body.addEventListener("click", handleOverlayClick);
-
-    return () => {
-      document.body.removeEventListener("click", handleOverlayClick);
-    };
-  }, [menuOpen]);
+export default function MainNavbar({ menuOpen, closeMenu }) {
+  const t = useTranslations("nav");
+  const locale = useLocale();
 
   return (
     <nav className="main-navbar">
       <div className="container">
-        <div className="logo">
+        <Link href={`/${locale}`} className="logo">
           <Image
             src="/images/logo.png"
             alt="Noureldeen Logo"
@@ -58,71 +26,67 @@ export default function MainNavbar() {
             height={200}
             className="image-1920"
           />
-        </div>
-
-        <button
-          className="menu-btn"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        </Link>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
   <li>
-    <Link href="/" onClick={closeMenu}>
+    <Link href={`/${locale}`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/home.png" alt="Home" width={24} height={24} />
-        <span>الرئيسية</span>
+        <Image src="/icons/home.png" alt={t("home")} width={24} height={24} />
+        <span>{t("home")}</span>
       </div>
     </Link>
   </li>
   <li>
-    <Link href="/about" onClick={closeMenu}>
+    <Link href={`/${locale}/about`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/story.png" alt="About" width={24} height={24} />
-        <span>من نحن</span>
+        <Image src="/icons/story.png" alt={t("about")} width={24} height={24} />
+        <span>{t("about")}</span>
       </div>
     </Link>
   </li>
   <li>
-    <Link href="/services" onClick={closeMenu}>
+    <Link href={`/${locale}/services`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/service.png" alt="Services" width={24} height={24} />
-        <span>الخدمات</span>
+        <Image src="/icons/service.png" alt={t("services")} width={24} height={24} />
+        <span>{t("services")}</span>
       </div>
     </Link>
   </li>
   <li>
-    <Link href="/products" onClick={closeMenu}>
+    <Link href={`/${locale}/products`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/order.png" alt="Products" width={24} height={24} />
-        <span>المنتجات</span>
+        <Image src="/icons/order.png" alt={t("products")} width={24} height={24} />
+        <span>{t("products")}</span>
       </div>
     </Link>
   </li>
   <li>
-    <Link href="/contact" onClick={closeMenu}>
+    <Link href={`/${locale}/contact`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/24-7.png" alt="Contact" width={24} height={24} />
-        <span>تواصل معنا</span>
+        <Image src="/icons/24-7.png" alt={t("contact")} width={24} height={24} />
+        <span>{t("contact")}</span>
       </div>
     </Link>
   </li>
   <li>
-    <Link href="/branches" onClick={closeMenu}>
+    <Link href={`/${locale}/branches`} onClick={closeMenu}>
       <div className="nav-item">
-        <Image src="/icons/branches.png" alt="branches" width={24} height={24} />
-        <span>فروعنا</span>
+        <Image src="/icons/branches.png" alt={t("branches")} width={24} height={24} />
+        <span>{t("branches")}</span>
       </div>
     </Link>
   </li>
 </ul>
+{menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
 
 
         <div className="hotline">
-          <span className="label">اتصل بنا</span>
-          <a href="tel:01151662662" className="number">
+{/*           <span className="label">{t("callUs")}</span>
+ */}         
+         <Image src="/icons/delivery.png" alt="delivery" width={50} height={50} />
+
+  <a href="tel:01151662662" className="number">
             01151662662
           </a>
         </div>

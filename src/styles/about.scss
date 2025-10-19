@@ -5,7 +5,6 @@ $secondary-color: #b44041;
 .about-page {
   padding: 100px 0;
   background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  direction: rtl;
   font-family:'Noor Regular', sans-serif;
   position: relative;
   overflow: hidden;
@@ -186,5 +185,44 @@ $secondary-color: #b44041;
       opacity: 1;
       transform: translateX(0);
     }
+  }
+}
+
+/* 🔹 LTR Mode - English Font */
+html[dir="ltr"] {
+  .about-page {
+    font-family: $font-agency;
+
+    .about-subtitle {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .about-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .about-description {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    .about-quote {
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 992px) {
+      .about-title {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}
+
+/* 🔹 RTL Mode - Arabic Font */
+html[dir="rtl"] {
+  .about-page {
+    font-family: $font-noor;
   }
 }

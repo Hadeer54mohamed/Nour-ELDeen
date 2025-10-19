@@ -5,10 +5,73 @@ $color-end: #b44041;
 
 .hero-section {
   position: relative;
-  width: 100%;
-  height: 85vh;
-  min-height: 500px;
   overflow: hidden;
+
+  .hero-bg {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+/* 
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(12, 103, 118, 0.7) 0%, rgba(180, 64, 65, 0.7) 100%);
+    z-index: 2;
+  } */
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #fff;
+      opacity: 0.95;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #0c6776, #b44041);
+      color: #fff;
+      padding: 14px 35px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background: linear-gradient(90deg, #b44041, #0c6776);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(180, 64, 65, 0.5);
+      }
+    }
+  }
 
   .hero-slide {
     position: absolute;
@@ -27,10 +90,10 @@ $color-end: #b44041;
     }
 
     .hero-bg {
-      object-fit: contain;
-      object-position: center;
+      
+      
       z-index: 1;
-      filter: brightness(0.75);
+      
       width: 100%;
       height: 100%;
     }
@@ -127,8 +190,23 @@ $color-end: #b44041;
 
   // 📱  tablet
   @media (max-width: 1024px) {
-    height: 70vh;
-    min-height: 450px;
+
+    .hero-content {
+      max-width: 700px;
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.15rem;
+      }
+
+      .hero-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+    }
 
     .hero-slide .hero-content {
       max-width: 700px;
@@ -150,8 +228,35 @@ $color-end: #b44041;
 
   // 📱 mobile
   @media (max-width: 768px) {
-    height: 60vh;
-    min-height: 400px;
+
+    .hero-bg {
+      object-position: center center;
+    }
+
+    .overlay {
+      background: linear-gradient(135deg, rgba(12, 103, 118, 0.85) 0%, rgba(180, 64, 65, 0.85) 100%);
+    }
+
+    .hero-content {
+      padding: 0 15px;
+      max-width: 100%;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .hero-btn {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+      }
+    }
 
     .hero-slide {
       .hero-bg {
@@ -199,10 +304,23 @@ $color-end: #b44041;
     }
   }
 
-  // 📱 mobile
+  // 📱 mobile small
   @media (max-width: 480px) {
-    height: 55vh;
-    min-height: 350px;
+
+    .hero-content {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .hero-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+      }
+    }
 
     .hero-slide .hero-content {
       h2 {
@@ -226,7 +344,6 @@ $color-end: #b44041;
   background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
   position: relative;
   overflow: hidden;
-  direction: rtl;
 
   &::before {
     content: "";
@@ -294,7 +411,7 @@ $color-end: #b44041;
       border-color: rgba($secondary-color, 0.4);
     }
 
-    .story-image {
+    .story-image { 
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
       transition: all 0.5s ease;
@@ -562,7 +679,6 @@ $color-end: #b44041;
   padding: 100px 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
   text-align: center;
-  direction: rtl;
   position: relative;
   overflow: hidden;
 
@@ -659,7 +775,7 @@ $color-end: #b44041;
     grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
     gap: 35px;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
   }
 
@@ -956,6 +1072,7 @@ $color-end: #b44041;
       font-weight: 800;
       background: linear-gradient(90deg, $primary-color, $secondary-color);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -1030,7 +1147,7 @@ $color-end: #b44041;
         font-size: 1rem;
 
         svg {
-          color: $secondary-color;
+          color: $primary-color;
         }
       }
     }
@@ -1074,7 +1191,6 @@ $color-end: #b44041;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  direction: rtl;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -1348,5 +1464,248 @@ $color-end: #b44041;
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* 🔹 LTR Mode - English Font Adjustments */
+html[dir="ltr"] {
+  .hero-section {
+    font-family: $font-agency;
+
+    .hero-content {
+      h2 {
+        font-size: 3.3rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.4rem;
+        line-height: 1.7;
+      }
+
+      .hero-btn {
+        font-size: 1.15rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .story-section {
+    font-family: $font-agency;
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .story-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+
+      h3 {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.15rem;
+      }
+    }
+  }
+
+  .products-section {
+    font-family: $font-agency;
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .product-card {
+      h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+
+      button {
+        font-size: 1.05rem;
+        font-weight: bold;
+      }
+    }
+
+    .product-category {
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .product-description {
+      font-size: 1.15rem;
+    }
+
+    .product-features {
+      h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      ul li {
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  .branches-section {
+    font-family: $font-agency;
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .branch-card {
+      h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  .services-section {
+    font-family: $font-agency;
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .service-card {
+      h3 {
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  .about-section {
+    font-family: $font-agency;
+
+    h1, h2 {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    .stats-item {
+      h3 {
+        font-size: 2.8rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .contact-section {
+    font-family: $font-agency;
+
+    h1, h2 {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    label {
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      font-size: 1rem;
+      font-family: $font-agency;
+    }
+
+    button {
+      font-size: 1.1rem;
+      font-weight: bold;
+      font-family: $font-agency;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section .hero-content {
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+
+      .hero-btn {
+        font-size: 1rem;
+      }
+    }
+
+    .section-title {
+      font-size: 2rem !important;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem !important;
+    }
+  }
+}
+
+/* 🔹 RTL Mode - Arabic Font */
+html[dir="rtl"] {
+  .hero-section,
+  .story-section,
+  .products-section,
+  .branches-section,
+  .services-section,
+  .about-section,
+  .contact-section {
+    font-family: $font-noor;
+
+    input, textarea, button {
+      font-family: $font-noor;
+    }
   }
 }

@@ -1,60 +1,44 @@
 "use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import heroData from "./heroData.json";
+import { useTranslations, useLocale } from "next-intl";
 import "../../../styles/sections.scss";
 
 export default function HeroSlider() {
-  const [current, setCurrent] = useState(0);
-  const slides = heroData.slides;
+  const t = useTranslations("hero");
+  const locale = useLocale();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000); 
-    return () => clearInterval(timer);
-  }, [slides.length]);
+  const slide = {
+    title: t("slide1.title"),
+    description: t("slide1.description"),
+    button: { text: t("slide1.button"), link: `/${locale}/about` },
+    video: "/images/hero/hero.mp4",
+  };
 
   return (
     <section className="hero-section">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`hero-slide ${index === current ? "active" : ""}`}
-        >
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            fill
-            priority={index === 0}
-            className="hero-bg"
-          />
+      {/* الخلفية الفيديو */}
+      <video
+        className="hero-bg"
+        src="/images/hero/hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
 
-          <div className="overlay"></div>
+      {/* <div className="overlay"></div>
 
-          <div className="hero-content container">
-            <h2>{slide.title}</h2>
-            <p>{slide.description}</p>
+      <div className="hero-content container">
+        <h2>{slide.title}</h2>
+        <p>{slide.description}</p>
 
-            {slide.button && (
-              <Link href={slide.button.link} className="hero-btn">
-                {slide.button.text}
-              </Link>
-            )}
-          </div>
-        </div>
-      ))}
+        {slide.button && (
+          <Link href={slide.button.link} className="hero-btn">
+            {slide.button.text}
+          </Link>
+        )}
+      </div> */}
 
-      <div className="hero-indicators">
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === current ? "active" : ""}`}
-            onClick={() => setCurrent(index)}
-          ></span>
-        ))}
-      </div>
     </section>
   );
 }

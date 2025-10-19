@@ -3,7 +3,6 @@
 .contact-section {
   padding: 100px 0;
   background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  direction: rtl;
   font-family: 'Noor Regular', sans-serif;
   position: relative;
   overflow: hidden;
@@ -198,6 +197,57 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+}
+
+/* 🔹 LTR Mode - English Font */
+html[dir="ltr"] {
+  .contact-section {
+    font-family: $font-agency;
+
+    .contact-subtitle {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .contact-title {
+      font-size: 2.6rem;
+      font-weight: bold;
+    }
+
+    .contact-description {
+      font-size: 1.2rem;
+    }
+
+    .contact-details li {
+      font-size: 1.1rem;
+    }
+
+    input, textarea {
+      font-family: $font-agency;
+      font-size: 1.1rem;
+    }
+
+    .contact-btn {
+      font-family: $font-agency;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .success-message {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* 🔹 RTL Mode - Arabic Font */
+html[dir="rtl"] {
+  .contact-section {
+    font-family: $font-noor;
+
+    input, textarea, .contact-btn {
+      font-family: $font-noor;
     }
   }
 }

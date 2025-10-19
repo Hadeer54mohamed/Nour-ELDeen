@@ -1,17 +1,53 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import "../../../styles/sections.scss";
-import productsData from "./ProductsData.json";
 
 const ProductsSection = () => {
-  const categories = ["الكل", "البن", "التوابل", "المكسرات", "الحبوب"];
-  const [selectedCategory, setSelectedCategory] = useState("الكل");
+  const t = useTranslations("products");
+  
+  const categories = [
+    { key: "all", label: t("categories.all") },
+    { key: "coffee", label: t("categories.coffee") },
+    { key: "spices", label: t("categories.spices") },
+    { key: "nuts", label: t("categories.nuts") },
+  ];
+
+  const productsData = [
+    {
+      name: t("items.product1.name"),
+      description: t("items.product1.description"),
+      image: "/images/hero/b&w.png",
+      category: "coffee"
+    },
+    {
+      name: t("items.product2.name"),
+      description: t("items.product2.description"),
+      image: "/images/hero/b&w.png",
+      category: "spices"
+    },
+    {
+      name: t("items.product3.name"),
+      description: t("items.product3.description"),
+      image: "/images/hero/b&w.png",
+      category: "nuts"
+    },
+  
+    {
+      name: t("items.product5.name"),
+      description: t("items.product5.description"),
+      image: "/images/hero/b&w.png",
+      category: "coffee"
+    }
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   const filteredProducts =
-    selectedCategory === "الكل"
+    selectedCategory === "all"
       ? productsData
       : productsData.filter((p) => p.category === selectedCategory);
 
@@ -29,22 +65,22 @@ const ProductsSection = () => {
     <section className="products-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">منتجاتنا</h2>
+          <h2 className="section-title">{t("title")}</h2>
           <p className="section-subtitle">
-            نقدم لكم أجود المواد الغذائية المختارة بعناية من نور الدين منذ عام 1920.
+            {t("subtitle")}
           </p>
         </div>
 
         <div className="products-filter">
           {categories.map((category) => (
             <button
-              key={category}
+              key={category.key}
               className={`filter-btn ${
-                selectedCategory === category ? "active" : ""
+                selectedCategory === category.key ? "active" : ""
               }`}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => setSelectedCategory(category.key)}
             >
-              {category}
+              {category.label}
             </button>
           ))}
         </div>
@@ -68,7 +104,7 @@ const ProductsSection = () => {
                   className="btn-primary"
                   onClick={() => openQuickView(product)}
                 >
-                  اعرف المزيد
+                  {t("learnMore")}
                 </button>
               </div>
             </div>
@@ -93,15 +129,15 @@ const ProductsSection = () => {
                 />
               </div>
               <div className="quickview-details">
-                <span className="product-category">{selectedProduct.category}</span>
+                <span className="product-category">{categories.find(c => c.key === selectedProduct.category)?.label}</span>
                 <h2>{selectedProduct.name}</h2>
                 <p className="product-description">{selectedProduct.description}</p>
                 <div className="product-features">
-                  <h3>المميزات:</h3>
+                  <h3>{t("features")}</h3>
                   <ul>
-                    <li>منتج طبيعي 100%</li>
-                    <li>جودة مضمونة</li>
-                    <li>تعبئة يومية طازجة</li>
+                    <li>{t("feature1")}</li>
+                    <li>{t("feature2")}</li>
+                    <li>{t("feature3")}</li>
                   </ul>
                 </div>
                {/*  <div className="quickview-actions">

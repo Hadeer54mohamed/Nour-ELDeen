@@ -1,18 +1,20 @@
 "use client";
-import { useState } from "react";
 import { Newspaper } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function NewsTicker() {
-  const [news] = useState([
-    "مرحباً بكم في نور الدين - أفضل مكان لتسوق المواد الغذائية 👋",
-    "تجدونا الآن في طنطا – الغربية ❤️",
-    "فرع أول: شارع أول البحر 🌊",
-    "فرع ثاني: الاستاد 🏟️",
-    "خدمة متوفرة على مدار 24 ساعة يومياً ⏰",
-    "منتجات طازجة وجودة مضمونة دائماً 🛒",
-    "نور الدين في خدمتك في أي وقت 🤝",
-    "عروض خاصة كل أسبوع 🎉",
-  ]);
+  const t = useTranslations("newsTicker");
+  
+  const news = [
+    t("news1"),
+    t("news2"),
+    t("news3"),
+    t("news4"),
+    t("news5"),
+    t("news6"),
+    t("news7"),
+    t("news8"),
+  ];
 
   return (
     <div className="news-ticker">

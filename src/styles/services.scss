@@ -1,3 +1,5 @@
+@import "variables";
+
 .services-section {
     position: relative;
     padding: 100px 0;
@@ -88,4 +90,43 @@
       }
     }
   }
+
+/* 🔹 LTR Mode - English Font */
+html[dir="ltr"] {
+  .services-section {
+    font-family: $font-agency;
+
+    .services-subtitle {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .services-title {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .services-description-intro {
+      font-size: 19px;
+    }
+
+    .service-card {
+      .service-title {
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .service-description {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+/* 🔹 RTL Mode - Arabic Font */
+html[dir="rtl"] {
+  .services-section {
+    font-family: $font-noor;
+  }
+}
   

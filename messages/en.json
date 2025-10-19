@@ -1,0 +1,149 @@
+{
+  "header": {
+    "welcometext": "Welcome to Nour El-Deen Food Products"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "products": "Products",
+    "contact": "Contact Us",
+    "branches": "Branches",
+    "callUs": "Call Us"
+  },
+  "newsTicker": {
+    "news1": "Welcome to Nour El-Deen - The best place for grocery shopping 👋",
+    "news2": "Find us now in Tanta – Gharbia ❤️",
+    "news3": "First branch: El Bahr Street 🌊",
+    "news4": "Second branch: El Estad 🏟️",
+    "news5": "Service available 24 hours a day ⏰",
+    "news6": "Fresh products and guaranteed quality always 🛒",
+    "news7": "Nour El-Deen at your service anytime 🤝",
+    "news8": "Special offers every week 🎉"
+  },
+  "hero": {
+    "slide1": {
+      "title": "Since 1920 — Quality You Can Trust",
+      "description": "At Nour El-Deen, we offer the finest fresh and imported food products for over 100 years.",
+      "button": "Know Our Story"
+    },
+    "slide2": {
+      "title": "Our Branches in the Heart of Tanta",
+      "description": "Find us at two main branches: El Bahr Street and El Estad Street — with exceptional customer service 24/7.",
+      "button": "Know Our Location"
+    },
+    "slide3": {
+      "title": "Everything You Need from Food Products in One Place",
+      "description": "We provide all types of food products — dairy, meat, legumes, and spices — with the highest quality and best prices.",
+      "button": "Browse Products"
+    }
+  },
+  "story": {
+    "title": "Our Story",
+    "subtitle": "Since 1920",
+    "description": "Our commercial establishment started in the heart of Tanta over a century ago, placing quality and honesty at the forefront of its priorities. Generations continued to develop and expand our business to meet the needs of our valued customers in the field of food products of all kinds.",
+    "quote": "The name was chosen to signify the antiquity and heritage of the commercial establishment, so we found nothing better than the face of Nour El-Deen (the great grandfather) to be our identity for the high quality we provide that does not change over time.",
+    "slogan": "We evolve for you"
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "We offer you the finest food products carefully selected by Nour El-Deen since 1920.",
+    "categories": {
+      "all": "All",
+      "coffee": "Coffee",
+      "spices": "Spices",
+      "nuts": "Nuts"
+    },
+    "items": {
+      "product1": {
+        "name": "Nour El-Deen Premium Coffee",
+        "description": "A blend of the finest coffee beans carefully roasted to give you an unforgettable flavor."
+      },
+      "product2": {
+        "name": "Selected Spices",
+        "description": "A collection of natural spices to add authentic flavor to your table."
+      },
+      "product3": {
+        "name": "Roasted Nuts",
+        "description": "A variety of fresh nuts roasted daily to ensure the best quality."
+      },
+      "product5": {
+        "name": "Turkish Ground Coffee",
+        "description": "Authentic taste for lovers of oriental coffee with various flavors."
+      }
+    },
+    "learnMore": "Learn More",
+    "features": "Features:",
+    "feature1": "100% natural product",
+    "feature2": "Guaranteed quality",
+    "feature3": "Fresh daily packaging"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "subtitle": "We are pleased to serve you through our branches in Tanta – Gharbia, around the clock.",
+    "branch1": {
+      "name": "El Bahr Street Branch",
+      "address": "Tanta - First El Bahr Street with El Galaa, corner of Halket El Kotn Street, Big Hyper",
+      "hours": "Open 24 hours daily"
+    },
+    "branch2": {
+      "name": "El Estad Branch",
+      "address": "Tanta - El Estad Street, City Club fence",
+      "hours": "Open 24 hours daily"
+    }
+  },
+  "footer": {
+    "description": "Since 1920, specialized in selling the finest food products with expertise spanning generations.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "name": "Nour El-Deen Food Products",
+    "branch1": "El Bahr Street Branch – Tanta",
+    "branch2": "El Estad Branch – Tanta",
+    "slogan": "We evolve for you 💫",
+    "copyright": "All rights reserved",
+    "developedBy": "Developed by"
+  },
+  "about": {
+    "subtitle": "Our Story",
+    "title": "Since 1920 — Quality Passed Through Generations",
+    "description1": "Nour El-Deen's journey started from the heart of Tanta city, as a small passion to provide authentic food products with an unforgettable taste. Over more than a hundred years, we have become a trusted brand for every Egyptian household, with products that combine authenticity and quality.",
+    "description2": "Today, through our multiple branches, we work to provide the best fresh and imported food products, with full commitment to serving our customers and meeting their needs with the highest quality standards.",
+    "quote": "Since 1920.. we maintain the taste of authenticity in every product we offer.",
+    "imageAlt": "Illustrative image about Nour El-Deen company"
+  },
+  "contact": {
+    "subtitle": "Contact Us",
+    "title": "We Always Love to Hear From You",
+    "description": "At Nour El-Deen, we care about your opinions and inquiries. You can contact us at any time and we will respond as soon as possible.",
+    "addressLabel": "Address",
+    "address": "Tanta - First El Bahr Street with El Galaa",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "namePlaceholder": "Full Name",
+    "emailPlaceholder": "Email Address",
+    "messagePlaceholder": "Your Message",
+    "submitButton": "Send Message",
+    "successMessage": "Your message has been sent successfully! Thank you for contacting us"
+  },
+  "services": {
+    "subtitle": "What We Offer",
+    "title": "Our Services at Nour El-Deen Food Products",
+    "description": "We work to meet the local market's needs for food products with the highest quality and safety standards.",
+    "service1": {
+      "title": "High Quality Food Products",
+      "description": "We provide a variety of fresh and carefully packaged food products to meet the needs of consumers and restaurants."
+    },
+    "service2": {
+      "title": "Wholesale and Retail Distribution",
+      "description": "We provide reliable and fast distribution services to stores and restaurants throughout the country."
+    },
+    "service3": {
+      "title": "Imported and Local Products",
+      "description": "We provide a wide selection of the best local and imported products from the most famous brands."
+    },
+    "service4": {
+      "title": "Distinguished Customer Service",
+      "description": "We care about customer satisfaction by providing technical support and high-level after-sales service."
+    }
+  }
+}

@@ -9,7 +9,6 @@
   background: linear-gradient(135deg, rgba(12, 103, 118, 0.95) 0%, rgba(180, 64, 65, 0.95) 100%);
   color: #fff;
   padding: 60px 0 40px;
-  direction: rtl;
   text-align: start;
   font-family: 'Noor Regular', sans-serif;
   position: relative;
@@ -341,7 +340,6 @@
   background: linear-gradient(135deg, darken($secondary-color, 8%) 0%, darken($primary-color, 5%) 100%);
   padding: 20px 0;
   border-top: 2px solid rgba(255, 255, 255, 0.1);
-  direction: rtl;
   text-align: center;
   position: relative;
   font-family:'Noor Regular', sans-serif;
@@ -436,4 +434,137 @@
   }
 }
 
+/* 🔹 LTR Mode Adjustments for Footer */
+html[dir="ltr"] {
+  .footer-upper,
+  .footer-lower {
+    direction: ltr;
+    text-align: left;
+    font-family: $font-agency;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .footer-socials {
+    justify-content: flex-start;
+  }
+
+  .footer-col {
+    h3 {
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.6);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 8px;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &.about {
+      .footer-desc {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+    }
+
+    ul li a {
+      font-size: 1.05rem;
+      font-weight: normal;
+
+      &::before {
+        content: "▶";
+        right: auto;
+        left: 0;
+      }
+
+      &:hover {
+        padding-right: 0;
+        padding-left: 23px;
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.8);
+        text-underline-offset: 4px;
+
+        &::before {
+          right: auto;
+          left: 5px;
+        }
+      }
+    }
+
+    &.contact {
+      .contact-item {
+        .contact-text {
+          font-size: 1rem;
+        }
+
+        &:hover {
+          transform: translateX(3px);
+        }
+      }
+    }
+  }
+
+  .footer-lower {
+    .footer-inline {
+      font-size: 1rem;
+
+      .footer-slogan {
+        font-size: 1.05rem;
+      }
+
+      strong {
+        font-size: 1.05rem;
+      }
+
+      .developed-by a {
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 209, 209, 0.5);
+        text-underline-offset: 3px;
+
+        &:hover {
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-col {
+      h3 {
+        font-size: 1.4rem;
+      }
+
+      &.about .footer-desc {
+        font-size: 1rem;
+      }
+
+      ul li a {
+        font-size: 0.95rem;
+      }
+
+      &.contact .contact-item .contact-text {
+        font-size: 0.95rem;
+      }
+    }
+
+    .footer-lower .footer-inline {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+html[dir="rtl"] {
+  .footer-upper,
+  .footer-lower {
+    direction: rtl;
+    text-align: right;
+    font-family: $font-noor;
+  }
+}
 
