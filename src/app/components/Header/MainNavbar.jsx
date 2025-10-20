@@ -29,65 +29,98 @@ export default function MainNavbar({ menuOpen, closeMenu }) {
         </Link>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-  <li>
-    <Link href={`/${locale}`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/home.png" alt={t("home")} width={24} height={24} />
-        <span>{t("home")}</span>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link href={`/${locale}/about`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/story.png" alt={t("about")} width={24} height={24} />
-        <span>{t("about")}</span>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link href={`/${locale}/services`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/service.png" alt={t("services")} width={24} height={24} />
-        <span>{t("services")}</span>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link href={`/${locale}/products`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/order.png" alt={t("products")} width={24} height={24} />
-        <span>{t("products")}</span>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link href={`/${locale}/contact`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/24-7.png" alt={t("contact")} width={24} height={24} />
-        <span>{t("contact")}</span>
-      </div>
-    </Link>
-  </li>
-  <li>
-    <Link href={`/${locale}/branches`} onClick={closeMenu}>
-      <div className="nav-item">
-        <Image src="/icons/branches.png" alt={t("branches")} width={24} height={24} />
-        <span>{t("branches")}</span>
-      </div>
-    </Link>
-  </li>
-</ul>
-{menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
-
+          <li>
+            <Link href={`/${locale}`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/home.png"
+                  alt={t("home")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("home")}</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href={`/${locale}/about`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/story.png"
+                  alt={t("about")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("about")}</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href={`/${locale}/services`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/service.png"
+                  alt={t("services")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("services")}</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href={`/${locale}/products`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/order.png"
+                  alt={t("products")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("products")}</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href={`/${locale}/contact`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/24-7.png"
+                  alt={t("contact")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("contact")}</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href={`/${locale}/branches`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/branches.png"
+                  alt={t("branches")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("branches")}</span>
+              </div>
+            </Link>
+          </li>
+        </ul>
+        {menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
 
         <div className="hotline">
-{/*           <span className="label">{t("callUs")}</span>
- */}         
-         <Image src="/icons/delivery.png" alt="delivery" width={50} height={50} />
+          {/*           <span className="label">{t("callUs")}</span>
+           */}
 
-  <a href="tel:01151662662" className="number">
-            01151662662
+          <a href="tel:01151662662">
+            <Image
+              src="/icons/delivery.jpg"
+              alt="phone"
+              width={240}
+              height={97}
+            />
           </a>
         </div>
       </div>
