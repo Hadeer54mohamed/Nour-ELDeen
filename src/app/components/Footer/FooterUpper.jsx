@@ -23,6 +23,13 @@ const FooterUpper = () => {
                 height={150}
                 priority
               />
+              <Image
+                src="/images/1920-.png"
+                alt="Noureldeen 1920"
+                width={150}
+                height={150}
+                priority
+              />
             </div>
             <p className="footer-desc">
               {t("description")}

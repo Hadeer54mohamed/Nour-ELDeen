@@ -227,29 +227,16 @@
     .footer-columns {
       grid-template-columns: 1fr;
       gap: 35px;
-      text-align: center;
     }
 
     .footer-col {
       &.about {
         .footer-logo {
           display: flex;
-          justify-content: center;
         }
-
-        .footer-desc {
-          text-align: center;
-        }
-      }
-
-      h3::after {
-        right: 50%;
-        transform: translateX(50%);
       }
 
       ul li a {
-        padding-right: 0;
-
         &::before {
           display: none;
         }
@@ -261,16 +248,10 @@
 
       &.contact {
         .contact-item {
-          justify-content: center;
-
           &:hover {
             transform: translateX(0);
           }
         }
-      }
-
-      .footer-socials {
-        justify-content: center;
       }
     }
   }
@@ -421,6 +402,12 @@
     }
   }
 
+  @media (max-width: 992px) {
+    .footer-inline {
+      align-items: center;
+    }
+  }
+
   @media (max-width: 768px) {
     .footer-inline {
       flex-direction: column;
@@ -447,8 +434,10 @@ html[dir="ltr"] {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .footer-socials {
-    justify-content: flex-start;
+  @media (min-width: 993px) {
+    .footer-socials {
+      justify-content: flex-start;
+    }
   }
 
   .footer-col {
@@ -534,22 +523,76 @@ html[dir="ltr"] {
     }
   }
 
+  @media (max-width: 992px) {
+    .footer-columns {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+
+    .footer-socials {
+      justify-content: center;
+    }
+
+    .footer-col {
+      &.about {
+        .footer-logo {
+          display: flex;
+        }
+      }
+
+      ul {        
+        li a {
+          &::before {
+            display: none;
+          }
+
+          &:hover {
+            padding-left: 0;
+          }
+        }
+      }
+
+      &.contact {
+        .contact-item {
+          &:hover {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     .footer-col {
       h3 {
-        font-size: 1.4rem;
+        font-size: 1.25rem;
       }
 
-      &.about .footer-desc {
-        font-size: 1rem;
+      &.about {
+        .footer-logo {
+          img {
+            width: 130px;
+            height: 130px;
+          }
+        }
+
+        .footer-desc {
+          font-size: 0.92rem;
+        }
       }
 
       ul li a {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
       }
 
-      &.contact .contact-item .contact-text {
-        font-size: 0.95rem;
+      &.contact .contact-item {
+        .contact-icon {
+          font-size: 1rem;
+        }
+
+        .contact-text {
+          font-size: 0.9rem;
+        }
       }
     }
 
@@ -565,6 +608,12 @@ html[dir="rtl"] {
     direction: rtl;
     text-align: right;
     font-family: $font-noor;
+  }
+
+  @media (max-width: 992px) {
+    .footer-socials {
+      justify-content: center;
+    }
   }
 }
 

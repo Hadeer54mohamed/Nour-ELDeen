@@ -6,7 +6,7 @@
     "home": "Home",
     "about": "About Us",
     "services": "Services",
-    "products": "Products",
+    "products": "categories",
     "contact": "Contact Us",
     "branches": "Branches",
     "callUs": "Call Us"
@@ -45,39 +45,93 @@
     "quote": "The name was chosen to signify the antiquity and heritage of the commercial establishment, so we found nothing better than the face of Nour El-Deen (the great grandfather) to be our identity for the high quality we provide that does not change over time.",
     "slogan": "We evolve for you"
   },
-  "products": {
-    "title": "Our Products",
-    "subtitle": "We offer you the finest food products carefully selected by Nour El-Deen since 1920.",
-    "categories": {
-      "all": "All",
-      "coffee": "Coffee",
-      "spices": "Spices",
-      "nuts": "Nuts"
-    },
-    "items": {
-      "product1": {
-        "name": "Nour El-Deen Premium Coffee",
-        "description": "A blend of the finest coffee beans carefully roasted to give you an unforgettable flavor."
-      },
-      "product2": {
-        "name": "Selected Spices",
-        "description": "A collection of natural spices to add authentic flavor to your table."
-      },
-      "product3": {
-        "name": "Roasted Nuts",
-        "description": "A variety of fresh nuts roasted daily to ensure the best quality."
-      },
-      "product5": {
-        "name": "Turkish Ground Coffee",
-        "description": "Authentic taste for lovers of oriental coffee with various flavors."
-      }
-    },
-    "learnMore": "Learn More",
-    "features": "Features:",
-    "feature1": "100% natural product",
-    "feature2": "Guaranteed quality",
-    "feature3": "Fresh daily packaging"
+"products": {
+  "title": "Our Categories",
+  "subtitle": "We offer you the finest food products carefully selected by Nour El-Deen since 1920.",
+  "categories": {
+    "all": "All",
+    "Herbs & Grocery": "Herbs & Grocery",
+    "Fruits & Vegetables": "Fruits & Vegetables",
+    "Dairy": "Dairy",
+    "Meat": "Meat",
+    "Mafaza": "Mafaza",
+    "Canned Goods": "Canned Goods",
+    "Beverages": "Beverages",
+    "Frozen Foods": "Frozen Foods",
+    "Pasta": "Pasta",
+    "Oils": "Oils",
+    "Halva": "Halva"
   },
+  "items": {
+    "category1": {
+      "name": "Mafaza",
+      "description": "Al-Sabeel’s premium products, known for their high quality and authentic taste that reflect our heritage in choosing the best."
+    },
+    "category2": {
+      "name": "Spices",
+      "description": "A curated selection of natural spices that bring rich and authentic flavor to your dishes."
+    },
+    "category3": {
+      "name": "Nuts",
+      "description": "A variety of the finest fresh nuts, roasted daily to ensure exceptional taste and quality."
+    },
+    "category4": {
+      "name": "Tea",
+      "description": "A curated selection of natural tea products that bring rich and authentic flavor to your dishes."
+    },
+    "category5": {
+      "name": "Meat",
+      "description": "Fresh, carefully selected meat to guarantee top quality and delicious flavor in every meal."
+    },
+    "category6": {
+      "name": "Vegetables",
+      "description": "Natural, fresh vegetables picked daily to reach you at their best quality."
+    },
+    "category7": {
+      "name": "Fruits",
+      "description": "Seasonal fruits carefully selected for their freshness, flavor, and nutritional value."
+    },
+    "category8": {
+      "name": "Canned Goods",
+      "description": "A range of high-quality canned foods, carefully preserved to retain their fresh taste and nutritional value."
+    },
+    "category9": {
+      "name": "Beverages",
+      "description": "A variety of hot and cold drinks for every occasion, combining refreshing taste and rich flavor."
+    },
+    "category10": {
+      "name": "Frozen Foods",
+      "description": "A selection of frozen products preserved with care to maintain freshness and quality."
+    },
+    "category11": {
+      "name": "Dairy",
+      "description": "Natural dairy products with rich flavor and premium quality from trusted sources."
+    },
+    "category12": {
+      "name": "Pasta",
+      "description": "High-quality pasta made from the finest wheat for a perfect texture and taste."
+    },
+    "category13": {
+      "name": "Halva",
+      "description": "A selection of premium halva varieties with rich flavors and high quality."
+    },
+    "category14": {
+      "name": "Cheese",
+      "description": "Premium cheeses with diverse flavors and a perfect texture for true cheese lovers."
+    },
+    "category15": {
+      "name": "Oils",
+      "description": "100% pure natural oils, carefully extracted to add rich flavor and guaranteed quality to your dishes."
+    }
+  },
+  "learnMore": "Learn More",
+  "features": "Features:",
+  "feature1": "100% natural product",
+  "feature2": "Guaranteed quality",
+  "feature3": "Fresh daily packaging"
+}
+
+,
   "branches": {
     "title": "Our Branches",
     "subtitle": "We are pleased to serve you through our branches in Tanta – Gharbia, around the clock.",
@@ -109,6 +163,7 @@
     "description1": "Nour El-Deen's journey started from the heart of Tanta city, as a small passion to provide authentic food products with an unforgettable taste. Over more than a hundred years, we have become a trusted brand for every Egyptian household, with products that combine authenticity and quality.",
     "description2": "Today, through our multiple branches, we work to provide the best fresh and imported food products, with full commitment to serving our customers and meeting their needs with the highest quality standards.",
     "quote": "Since 1920.. we maintain the taste of authenticity in every product we offer.",
+    "quote2": "The name was chosen to signify the antiquity and heritage of the commercial establishment, so we found nothing better than the face of Nour El-Deen (the great grandfather) to be our identity for the high quality we provide that does not change over time.",
     "imageAlt": "Illustrative image about Nour El-Deen company"
   },
   "contact": {
@@ -125,25 +180,27 @@
     "submitButton": "Send Message",
     "successMessage": "Your message has been sent successfully! Thank you for contacting us"
   },
-  "services": {
-    "subtitle": "What We Offer",
-    "title": "Our Services at Nour El-Deen Food Products",
-    "description": "We work to meet the local market's needs for food products with the highest quality and safety standards.",
-    "service1": {
-      "title": "High Quality Food Products",
-      "description": "We provide a variety of fresh and carefully packaged food products to meet the needs of consumers and restaurants."
-    },
-    "service2": {
-      "title": "Wholesale and Retail Distribution",
-      "description": "We provide reliable and fast distribution services to stores and restaurants throughout the country."
-    },
-    "service3": {
-      "title": "Imported and Local Products",
-      "description": "We provide a wide selection of the best local and imported products from the most famous brands."
-    },
-    "service4": {
-      "title": "Distinguished Customer Service",
-      "description": "We care about customer satisfaction by providing technical support and high-level after-sales service."
-    }
+ "services": {
+  "subtitle": "What We Offer",
+  "title": "Our Services at Nour Eldeen Food Supplies",
+  "description": "We strive to meet the needs of the local market with the highest quality food products and safety standards.",
+
+  "service1": {
+    "title": "Easy and Fast Communication",
+    "description": "We ensure our customers can place their orders quickly and easily through efficient communication channels and friendly support at any time."
+  },
+  "service2": {
+    "title": "Wholesale and Retail Distribution",
+    "description": "We provide reliable and fast distribution services for stores and restaurants across the country."
+  },
+  "service3": {
+    "title": "Imported and Local Products",
+    "description": "We offer a wide variety of top-quality local and imported products from the most trusted brands."
+  },
+  "service4": {
+    "title": "Trust Built Over the Years",
+    "description": "We believe our success is built on the trust our customers have placed in our products and services since 1920."
   }
+}
+
 }

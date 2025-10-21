@@ -37,6 +37,9 @@ const AboutPage = () => {
             <blockquote className="about-quote">
               "{t("quote")}"
             </blockquote>
+            <blockquote className="about-quote">
+              "{t("quote2")}"
+            </blockquote>
           </div>
         </div>
       </div>

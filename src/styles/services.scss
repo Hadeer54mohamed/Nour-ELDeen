@@ -50,23 +50,42 @@
           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
   
-        .service-icon {
+        .service-icon-wrapper {
+          display: flex;
+          justify-content: center;
           margin-bottom: 20px;
-  
-          img {
-            border-radius: 50%;
-            background: #fff5f2;
-            padding: 10px;
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+        }
+        
+        .service-icon-circle {
+          background: #fff5f5;
+          border: 2px solid #b44041;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+          svg {
+            transition: transform 0.3s ease;
+          }
+        
+          &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(180, 64, 65, 0.2);
+        
+            svg {
+              transform: rotate(10deg);
+            }
           }
         }
+        
   
         .service-title {
           font-size: 20px;
           font-weight: 600;
-          color: #333;
+          color: #0c6776;
           margin-bottom: 10px;
         }
   

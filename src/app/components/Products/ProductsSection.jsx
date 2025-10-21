@@ -1,93 +1,188 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import "../../../styles/sections.scss";
 
 const ProductsSection = () => {
   const t = useTranslations("products");
-  
+  const scrollContainerRef = useRef(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -350,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 350,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const categories = [
     { key: "all", label: t("categories.all") },
-    { key: "coffee", label: t("categories.coffee") },
-    { key: "spices", label: t("categories.spices") },
-    { key: "nuts", label: t("categories.nuts") },
+    { key: "mafaza", label: t("categories.Mafaza") },
+    { key: "herbs_grocery", label: t("categories.Herbs & Grocery") },
+    { key: "fruits_vegetables", label: t("categories.Fruits & Vegetables") },
+    { key: "dairy", label: t("categories.Dairy") },
+    { key: "meat", label: t("categories.Meat") },
+    { key: "canned_goods", label: t("categories.Canned Goods") },
+    { key: "beverages", label: t("categories.Beverages") },
+    { key: "frozen_foods", label: t("categories.Frozen Foods") },
+    { key: "pasta", label: t("categories.Pasta") },
+    { key: "oils", label: t("categories.Oils") },
+    { key: "halva", label: t("categories.Halva") }
   ];
 
   const productsData = [
     {
-      name: t("items.product1.name"),
-      description: t("items.product1.description"),
-      image: "/images/hero/b&w.png",
-      category: "coffee"
+      name: t("items.category1.name"),
+      description: t("items.category1.description"),
+      image: "/category/mafaza.jpg",
+      category: "mafaza",
     },
     {
-      name: t("items.product2.name"),
-      description: t("items.product2.description"),
-      image: "/images/hero/b&w.png",
-      category: "spices"
+      name: t("items.category2.name"),
+      description: t("items.category2.description"),
+      image: "/category/Spices1.jpg",
+      category: "herbs_grocery",
     },
     {
-      name: t("items.product3.name"),
-      description: t("items.product3.description"),
-      image: "/images/hero/b&w.png",
-      category: "nuts"
+      name: t("items.category3.name"),
+      description: t("items.category3.description"),
+      image: "/category/Nuts.jpg",
+      category: "herbs_grocery",
     },
-  
     {
-      name: t("items.product5.name"),
-      description: t("items.product5.description"),
-      image: "/images/hero/b&w.png",
-      category: "coffee"
-    }
+      name: t("items.category4.name"),
+      description: t("items.category4.description"),
+      image: "/category/Tea.jpg",
+      category: "beverages",
+    },
+    {
+      name: t("items.category5.name"),
+      description: t("items.category5.description"),
+      image: "/category/Meat.jpg",
+      category: "meat",
+    },
+    {
+      name: t("items.category6.name"),
+      description: t("items.category6.description"),
+      image: "/category/Vegetables.jpg",
+      category: "fruits_vegetables",
+    },
+    {
+      name: t("items.category7.name"),
+      description: t("items.category7.description"),
+      image: "/category/Fruits.jpg",
+      category: "fruits_vegetables",
+    },
+    {
+      name: t("items.category8.name"),
+      description: t("items.category8.description"),
+      image: "/category/Canned Goods.jpg",
+      category: "canned_goods",
+    },
+    {
+      name: t("items.category9.name"),
+      description: t("items.category9.description"),
+      image: "/category/Beverages.jpg",
+      category: "beverages",
+    },
+    {
+      name: t("items.category10.name"),
+      description: t("items.category10.description"),
+      image: "/category/Frozen Foods.jpg",
+      category: "frozen_foods",
+    },
+    {
+      name: t("items.category11.name"),
+      description: t("items.category11.description"),
+      image: "/category/Dairy.jpg",
+      category: "dairy",
+    },
+    {
+      name: t("items.category12.name"),
+      description: t("items.category12.description"),
+      image: "/category/Pasta.jpg",
+      category: "pasta",
+    },
+    {
+      name: t("items.category13.name"),
+      description: t("items.category13.description"),
+      image: "/category/Halva.jpg",
+      category: "halva",
+    },
+    {
+      name: t("items.category14.name"),
+      description: t("items.category14.description"),
+      image: "/category/Cheese.jpg",
+      category: "dairy",
+    },
+    {
+      name: t("items.category15.name"),
+      description: t("items.category15.description"),
+      image: "/category/Oils.jpg",
+      category: "oils",
+    },
   ];
-
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   const filteredProducts =
     selectedCategory === "all"
       ? productsData
       : productsData.filter((p) => p.category === selectedCategory);
 
-  const openQuickView = (product) => {
-    setSelectedProduct(product);
-    setIsQuickViewOpen(true);
-  };
-
-  const closeQuickView = () => {
-    setIsQuickViewOpen(false);
-    setSelectedProduct(null);
-  };
+  useEffect(() => {
+    if (scrollContainerRef.current && filteredProducts.length > 0) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, [selectedCategory, filteredProducts.length]);
 
   return (
     <section className="products-section">
-      <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">{t("title")}</h2>
-          <p className="section-subtitle">
-            {t("subtitle")}
-          </p>
-        </div>
+      <div className="section-header-container">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">{t("title")}</h2>
+            <p className="section-subtitle">{t("subtitle")}</p>
+          </div>
 
-        <div className="products-filter">
-          {categories.map((category) => (
-            <button
-              key={category.key}
-              className={`filter-btn ${
-                selectedCategory === category.key ? "active" : ""
-              }`}
-              onClick={() => setSelectedCategory(category.key)}
-            >
-              {category.label}
-            </button>
-          ))}
+          <div className="products-filter">
+            {categories.map((category) => (
+              <button
+                key={category.key}
+                className={`filter-btn ${
+                  selectedCategory === category.key ? "active" : ""
+                }`}
+                onClick={() => setSelectedCategory(category.key)}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
         </div>
+      </div>
 
-        <div className="products-grid">
+      <div className="products-slider-wrapper">
+        <button 
+          className="slider-btn slider-btn-left" 
+          onClick={scrollLeft}
+          aria-label="Previous"
+        >
+          ‹
+        </button>
+        
+        <div className="products-slider" ref={scrollContainerRef}>
           {filteredProducts.map((product, index) => (
-            <div className="product-card" key={index}>
+            <div className="product-card" key={`${product.name}-${index}`}>
               <div className="product-image-wrapper">
                 <Image
                   src={product.image}
@@ -100,57 +195,19 @@ const ProductsSection = () => {
               <div className="product-info">
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
-                <button 
-                  className="btn-primary"
-                  onClick={() => openQuickView(product)}
-                >
-                  {t("learnMore")}
-                </button>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {isQuickViewOpen && selectedProduct && (
-        <div className="quickview-overlay" onClick={closeQuickView}>
-          <div className="quickview-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="quickview-close" onClick={closeQuickView}>
-              ×
-            </button>
-            <div className="quickview-content">
-              <div className="quickview-image">
-                <Image
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  width={400}
-                  height={400}
-                  className="modal-product-image"
-                />
-              </div>
-              <div className="quickview-details">
-                <span className="product-category">{categories.find(c => c.key === selectedProduct.category)?.label}</span>
-                <h2>{selectedProduct.name}</h2>
-                <p className="product-description">{selectedProduct.description}</p>
-                <div className="product-features">
-                  <h3>{t("features")}</h3>
-                  <ul>
-                    <li>{t("feature1")}</li>
-                    <li>{t("feature2")}</li>
-                    <li>{t("feature3")}</li>
-                  </ul>
-                </div>
-               {/*  <div className="quickview-actions">
-                  <button className="btn-primary">اطلب الآن</button>
-                  <button className="btn-secondary" onClick={closeQuickView}>
-                    إغلاق
-                  </button>
-                </div> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+        <button 
+          className="slider-btn slider-btn-right" 
+          onClick={scrollRight}
+          aria-label="Next"
+        >
+          ›
+        </button>
+      </div>
     </section>
   );
 };
