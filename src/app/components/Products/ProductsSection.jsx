@@ -46,7 +46,7 @@ const ProductsSection = () => {
     {
       name: t("items.category1.name"),
       description: t("items.category1.description"),
-      image: "/category/mafaza.jpg",
+      image: "/category/Mafaza.jpg",
       category: "mafaza",
     },
     {
