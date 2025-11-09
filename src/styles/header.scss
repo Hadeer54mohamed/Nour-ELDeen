@@ -1,4 +1,5 @@
-@import "variables";
+@use "sass:color";
+@use "variables" as *;
 
 .header {
   width: 100%;
@@ -10,7 +11,7 @@
 
 /* 🔹 Upper Navbar */
 .upper-navbar {
-  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+  background: linear-gradient(135deg, $primary-color 0%, color.adjust($primary-color, $lightness: -10%) 100%);
   color: #fff;
   font-size: 14px;
   padding: 10px 0;
@@ -307,7 +308,7 @@
         }
   
         &:hover {
-          color: darken($primary-color, 10%);
+          color: color.adjust($primary-color, $lightness: -10%);
   
           .nav-item img {
             transform: translateY(-3px) scale(1.1);
@@ -391,7 +392,11 @@
 /* 📱 Mobile Menu Button in Upper Navbar */
 .menu-btn-upper {
   display: none;
-  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 8%) 100%);
+  background: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    color.adjust($primary-color, $lightness: -8%) 100%
+  );
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   cursor: pointer;
@@ -410,7 +415,11 @@
 
   &:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(135deg, darken($primary-color, 5%) 0%, darken($primary-color, 13%) 100%);
+    background: linear-gradient(
+      135deg,
+      color.adjust($primary-color, $lightness: -5%) 0%,
+      color.adjust($primary-color, $lightness: -13%) 100%
+    );
     border-color: rgba(255, 255, 255, 0.5);
     
     svg {
@@ -508,7 +517,7 @@
           }
 
           &:hover {
-            background-color: lighten($primary-color, 40%);
+            background-color: color.adjust($primary-color, $lightness: 40%);
             color: $primary-color;
             padding-right: 30px;
 

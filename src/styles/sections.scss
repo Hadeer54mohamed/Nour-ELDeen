@@ -1,4 +1,6 @@
-@import "variables";
+@use "variables" as *;
+@use "header";
+@use "footer";
 
 $color-start: #0c6776;
 $color-end: #b44041;
@@ -1303,8 +1305,19 @@ $color-end: #b44041;
     }
 
     .branch-map {
+      position: relative;
+
       iframe {
         border-radius: 15px;
+      }
+
+      .branch-map-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 12 / 5;
+        object-fit: cover;
+        border-radius: 15px;
+        display: block;
       }
     }
 

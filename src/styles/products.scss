@@ -1,4 +1,6 @@
-@import "variables";
+@use "variables" as *;
+@use "header";
+@use "footer";
 
 .products-section {
   padding: 50px 0;

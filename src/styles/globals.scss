@@ -1,7 +1,7 @@
-@import "variables";
-@import "header";
-@import "footer";
-@import "sections";
+@use "variables" as *;
+@use "header";
+@use "footer";
+@use "sections";
 
 @font-face {
   font-family: 'Noor Regular';

@@ -1,4 +1,6 @@
-@import "variables";
+@use "variables" as *;
+@use "header";
+@use "footer";
 
 .services-section {
     position: relative;

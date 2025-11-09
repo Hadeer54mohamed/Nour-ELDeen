@@ -46,7 +46,7 @@ const BranchesSection = () => {
                   alt={branch.name}
                   width={600}
                   height={250}
-                  style={{ borderRadius: "15px", objectFit: "cover", width: "100%", height: "250px" }}
+                  className="branch-map-image"
                   priority={index === 0}
                 />
               </div>

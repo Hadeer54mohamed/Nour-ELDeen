@@ -1,4 +1,5 @@
-@import "variables";
+@use "sass:color";
+@use "variables" as *;
 
 .footer {
   position: relative;
@@ -61,6 +62,10 @@
           border-radius: 15px;
           transition: all 0.3s ease;
           object-fit: contain;
+          height: auto;
+          width: auto;
+          max-width: 150px;
+
           &:hover {
             transform: scale(1.08);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -277,8 +282,9 @@
       &.about {
         .footer-logo {
           img {
-            width: 130px;
-            height: 130px;
+            width: auto;
+            height: auto;
+            max-width: 130px;
           }
         }
 
@@ -318,8 +324,12 @@
 
 
 .footer-lower {
-  background: linear-gradient(135deg, darken($secondary-color, 8%) 0%, darken($primary-color, 5%) 100%);
-  padding: 20px 0;
+  background: linear-gradient(
+    135deg,
+    color.scale($secondary-color, $lightness: -8%) 0%,
+    color.scale($primary-color, $lightness: -5%) 100%
+  );
+    padding: 20px 0;
   border-top: 2px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   position: relative;
