@@ -60,6 +60,7 @@ const FooterUpper = () => {
               <li><a href={`/${locale}/products`}>{tNav("products")}</a></li>
               <li><a href={`/${locale}/about`}>{tNav("about")}</a></li>
               <li><a href={`/${locale}/branches`}>{tNav("branches")}</a></li>
+              <li><a href={`/${locale}/careers`}>{tNav("careers")}</a></li>
               <li><a href={`/${locale}/contact`}>{tNav("contact")}</a></li>
             </ul>
           </div>

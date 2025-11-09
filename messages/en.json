@@ -9,6 +9,7 @@
     "products": "categories",
     "contact": "Contact Us",
     "branches": "Branches",
+    "careers": "Careers",
     "callUs": "Call Us"
   },
   "newsTicker": {
@@ -180,7 +181,7 @@
     "submitButton": "Send Message",
     "successMessage": "Your message has been sent successfully! Thank you for contacting us"
   },
- "services": {
+  "services": {
   "subtitle": "What We Offer",
   "title": "Our Services at Nour Eldeen Food Supplies",
   "description": "We strive to meet the needs of the local market with the highest quality food products and safety standards.",
@@ -201,6 +202,59 @@
     "title": "Trust Built Over the Years",
     "description": "We believe our success is built on the trust our customers have placed in our products and services since 1920."
   }
-}
-
+  },
+  "careers": {
+  "subtitle": "Careers",
+  "title": "Join Nour El-Deen Team",
+  "description": "We are looking for passionate and dedicated employees to join our team. If you are looking for a job opportunity in a dynamic and stimulating environment, we want to hear from you.",
+  "infoTitle": "Why Nour El-Deen?",
+  "infoDescription": "We provide a stimulating work environment and opportunities for professional growth. We believe in developing our employees and helping them achieve their career goals.",
+  "benefitsTitle": "Benefits",
+  "benefit1": "Competitive salary",
+  "benefit2": "Stimulating work environment",
+  "benefit3": "Professional development opportunities",
+  "benefit4": "Health insurance",
+  "requirementsTitle": "Requirements",
+  "requirement1": "Commitment to deadlines",
+  "requirement2": "Ability to work in a team",
+  "requirement3": "Desire to learn and develop",
+  "fullNameLabel": "Full Name",
+  "fullNamePlaceholder": "Enter your full name",
+  "emailLabel": "Email",
+  "optionalLabel": "Optional",
+  "emailPlaceholder": "example@email.com",
+  "addressLabel": "Address",
+  "addressPlaceholder": "Enter your full address",
+  "phoneLabel": "Phone Number",
+  "phonePlaceholder": "01X-XXXX-XXXX",
+  "positionLabel": "Position Applied For",
+  "positionPlaceholder": "Select position",
+  "positionSales": "Sales Representative",
+  "positionCashier": "Cashier",
+  "positionWarehouse": "Warehouse",
+  "positionManager": "Manager",
+  "positionDriver": "Driver",
+  "positionOther": "Other",
+    "otherPositionLabel": "Specify Job Title",
+    "otherPositionPlaceholder": "Enter the job title you want",
+    "otherPositionRequired": "Please specify the job title you want.",
+  "militaryStatusLabel": "Military Status",
+  "militaryStatusPlaceholder": "Select status",
+  "militaryStatusCompleted": "Completed service",
+  "militaryStatusExempted": "Exempted",
+  "militaryStatusPostponed": "Postponed",
+  "militaryStatusServing": "Currently serving",
+  "militaryStatusNotApplicable": "Not applicable",
+  "cvLabel": "CV Link",
+  "cvPlaceholder": "Paste your Google Drive CV link",
+  "cvHint": "Make sure the link is publicly viewable (Google Drive → Anyone with the link).",
+  "coverLetterLabel": "Notes (Optional)",
+  "coverLetterPlaceholder": "Write your cover letter here...",
+  "submitButton": "Submit Application",
+  "submittingButton": "Sending...",
+  "successMessage": "Your application has been sent successfully! We will contact you soon",
+  "submitError": "Something went wrong while sending your application. Please try again later.",
+  "configurationError": "Email configuration is missing. Please contact support.",
+  "invalidCvLink": "Please enter a valid CV link."
+ }
 }

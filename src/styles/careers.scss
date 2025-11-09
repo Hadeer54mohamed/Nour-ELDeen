@@ -1,0 +1,421 @@
+@import "variables";
+
+.careers-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  font-family: 'Noor Regular', sans-serif;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(180, 64, 65, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(12, 103, 118, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .careers-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInUp 1s ease-out;
+
+    .careers-subtitle {
+      color: $secondary-color;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .careers-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, $primary-color, $secondary-color);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .careers-description {
+      color: #555;
+      line-height: 1.9;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .careers-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    animation: fadeInUp 1.2s ease-out;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .careers-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .info-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      svg {
+        color: $primary-color;
+        margin-bottom: 15px;
+      }
+
+      h4 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 12px;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.8;
+        margin: 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          color: #666;
+          line-height: 2;
+          padding-right: 20px;
+          position: relative;
+
+          &::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: $secondary-color;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .careers-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    .success-message {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(
+        115deg,
+        #20c997 0%,
+        #28a745 45%,
+        #2ecc71 75%,
+        #17a2b8 100%
+      );
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      margin: 25px auto 0;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(32, 201, 151, 0.35);
+      animation: slideDown 0.5s ease-out;
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+      text-transform: none;
+      width: fit-content;
+      overflow: visible;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 70%;
+        background: inherit;
+        filter: brightness(0.9);
+        z-index: -1;
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.25);
+      }
+
+      &::before {
+        left: -18px;
+        clip-path: polygon(100% 0, 0 50%, 100% 100%);
+        border-radius: 6px 0 0 6px;
+      }
+
+      &::after {
+        right: -18px;
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+        border-radius: 0 6px 6px 0;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: $dark-text;
+        margin-bottom: 8px;
+        font-size: 1rem;
+
+        svg {
+          color: $primary-color;
+        }
+
+        .required {
+          color: #e74c3c;
+          margin-right: 5px;
+        }
+
+        .optional {
+          color: #888;
+          font-weight: 500;
+        }
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #fff;
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+          outline: none;
+        }
+      }
+
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b44041' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: left 15px center;
+        padding-right: 15px;
+        padding-left: 40px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .file-hint {
+      display: block;
+      margin-top: 8px;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(90deg, $primary-color, $secondary-color);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      margin-top: 10px;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+    }
+
+    .error-message {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: rgba(231, 76, 60, 0.12);
+      color: #c0392b;
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid rgba(231, 76, 60, 0.2);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+html[dir="ltr"] {
+  .careers-section {
+    font-family: $font-agency;
+
+    .careers-subtitle {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .careers-title {
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    .careers-description {
+      font-size: 1.2rem;
+    }
+
+    .careers-form {
+      input,
+      select,
+      textarea,
+      .submit-btn {
+        font-family: $font-agency;
+        font-size: 1.1rem;
+      }
+
+      label {
+        font-family: $font-agency;
+        font-size: 1.1rem;
+      }
+    }
+
+    .careers-info {
+      .info-card {
+        h4 {
+          font-family: $font-agency;
+          font-size: 1.4rem;
+        }
+
+        p,
+        li {
+          font-family: $font-agency;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+html[dir="rtl"] {
+  .careers-section {
+    font-family: $font-noor;
+
+    input,
+    select,
+    textarea,
+    .submit-btn {
+      font-family: $font-noor;
+    }
+
+    .file-label {
+      font-family: $font-noor;
+    }
+
+    .careers-form {
+      .form-group {
+        select {
+          background-position: right 15px center;
+          padding-left: 15px;
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}
+
+

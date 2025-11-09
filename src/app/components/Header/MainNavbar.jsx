@@ -107,6 +107,19 @@ export default function MainNavbar({ menuOpen, closeMenu }) {
               </div>
             </Link>
           </li>
+          <li>
+            <Link href={`/${locale}/careers`} onClick={closeMenu}>
+              <div className="nav-item">
+                <Image
+                  src="/icons/job-description.png"
+                  alt={t("careers")}
+                  width={24}
+                  height={24}
+                />
+                <span>{t("careers")}</span>
+              </div>
+            </Link>
+          </li>
         </ul>
         {menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
 
