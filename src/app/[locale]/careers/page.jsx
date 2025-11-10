@@ -12,7 +12,6 @@ import {
   ShieldCheck,
   MapPin,
 } from "lucide-react";
-import emailjs from "@emailjs/browser";
 
 const CareersPage = () => {
   const t = useTranslations("careers");
@@ -28,6 +27,7 @@ const CareersPage = () => {
     coverLetter: "",
     cvLink: "",
   });
+  const [cvFile, setCvFile] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,8 +41,7 @@ const CareersPage = () => {
         return {
           ...prev,
           position: value,
-          otherPosition:
-            value === otherPositionValue ? prev.otherPosition : "",
+          otherPosition: value === otherPositionValue ? prev.otherPosition : "",
         };
       }
 
@@ -53,13 +52,47 @@ const CareersPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setErrorMessage(
+          t("fileTooLarge") || "File size should be less than 5MB"
+        );
+        setCvFile(null);
+        e.target.value = "";
+        return;
+      }
+
+      // Check file type
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        setErrorMessage(
+          t("invalidFileType") || "Please upload a PDF or Word document"
+        );
+        setCvFile(null);
+        e.target.value = "";
+        return;
+      }
+
+      setCvFile(file);
+      setErrorMessage("");
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
     setShowSuccess(false);
 
-    if (!formData.cvLink || !/^https?:\/\//i.test(formData.cvLink)) {
-      setErrorMessage(t("invalidCvLink"));
+    // Validate CV file
+    if (!cvFile) {
+      setErrorMessage(t("cvRequired") || "Please upload your CV");
       return;
     }
 
@@ -72,51 +105,65 @@ const CareersPage = () => {
       return;
     }
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setErrorMessage(t("configurationError"));
-      return;
-    }
-
-    if (!formRef.current) {
-      setErrorMessage(t("submitError"));
-      return;
-    }
-
     setIsSubmitting(true);
 
-    emailjs
-      .sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then(() => {
-        setShowSuccess(true);
-        setErrorMessage("");
-        setFormData({
-          fullName: "",
-          address: "",
-          email: "",
-          phone: "",
-          position: "",
-          otherPosition: "",
-          militaryStatus: "",
-          coverLetter: "",
-          cvLink: "",
-        });
-        formRef.current?.reset();
+    try {
+      // Prepare form data
+      const submitFormData = new FormData();
+      submitFormData.append("fullName", formData.fullName);
+      submitFormData.append("address", formData.address);
+      submitFormData.append("email", formData.email);
+      submitFormData.append("phone", formData.phone);
+      submitFormData.append(
+        "position",
+        formData.position === otherPositionValue && formData.otherPosition
+          ? formData.otherPosition
+          : formData.position
+      );
+      submitFormData.append("militaryStatus", formData.militaryStatus);
+      submitFormData.append("coverLetter", formData.coverLetter);
+      submitFormData.append("cv", cvFile);
 
-        window.setTimeout(() => {
-          setShowSuccess(false);
-        }, 5000);
-      })
-      .catch((error) => {
-        console.error("EmailJS error:", error);
-        setErrorMessage(t("submitError"));
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+      // Send to API
+      const response = await fetch("/api/send-application", {
+        method: "POST",
+        body: submitFormData,
       });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to send application");
+      }
+
+      // Success
+      setShowSuccess(true);
+      setErrorMessage("");
+      setFormData({
+        fullName: "",
+        address: "",
+        email: "",
+        phone: "",
+        position: "",
+        otherPosition: "",
+        militaryStatus: "",
+        coverLetter: "",
+        cvLink: "",
+      });
+      setCvFile(null);
+      formRef.current?.reset();
+
+      window.setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error("Submit error:", error);
+      setErrorMessage(
+        t("submitError") || "Error submitting application. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -195,7 +242,7 @@ const CareersPage = () => {
             </div>
 
             <div className="form-row">
-            <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="email">
                   <Mail size={16} />
                   {t("emailLabel")}{" "}
@@ -241,7 +288,9 @@ const CareersPage = () => {
                   required
                 >
                   <option value="">{t("positionPlaceholder")}</option>
-                  <option value={t("positionSales")}>{t("positionSales")}</option>
+                  <option value={t("positionSales")}>
+                    {t("positionSales")}
+                  </option>
                   <option value={t("positionCashier")}>
                     {t("positionCashier")}
                   </option>
@@ -251,8 +300,12 @@ const CareersPage = () => {
                   <option value={t("positionManager")}>
                     {t("positionManager")}
                   </option>
-                  <option value={t("positionDriver")}>{t("positionDriver")}</option>
-                  <option value={t("positionOther")}>{t("positionOther")}</option>
+                  <option value={t("positionDriver")}>
+                    {t("positionDriver")}
+                  </option>
+                  <option value={t("positionOther")}>
+                    {t("positionOther")}
+                  </option>
                 </select>
               </div>
 
@@ -260,7 +313,8 @@ const CareersPage = () => {
                 <div className="form-group">
                   <label htmlFor="otherPosition">
                     <Briefcase size={16} />
-                    {t("otherPositionLabel")} <span className="required">*</span>
+                    {t("otherPositionLabel")}{" "}
+                    <span className="required">*</span>
                   </label>
                   <input
                     type="text"
@@ -312,26 +366,21 @@ const CareersPage = () => {
                 {t("cvLabel")} <span className="required">*</span>
               </label>
               <input
-                type="url"
+                type="file"
                 id="cv"
-                name="cvLink"
-                placeholder={t("cvPlaceholder")}
-                value={formData.cvLink}
-                onChange={handleInputChange}
+                name="cv"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
                 required
               />
-              <input type="hidden" name="cvLinkHref" value={formData.cvLink} />
-              <input
-                type="hidden"
-                name="positionDisplay"
-                value={
-                  formData.position === t("positionOther") &&
-                  formData.otherPosition
-                    ? formData.otherPosition
-                    : formData.position
-                }
-              />
-              <small className="file-hint">{t("cvHint")}</small>
+              {cvFile && (
+                <small className="file-info">
+                  ✓ {cvFile.name} ({(cvFile.size / 1024).toFixed(2)} KB)
+                </small>
+              )}
+              <small className="file-hint">
+                {t("cvHint") || "Upload PDF or Word document (Max 5MB)"}
+              </small>
             </div>
 
             <div className="form-group">
@@ -374,5 +423,3 @@ const CareersPage = () => {
 };
 
 export default CareersPage;
-
-
