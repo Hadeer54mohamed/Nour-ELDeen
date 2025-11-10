@@ -246,9 +246,10 @@
     "militaryStatusPostponed": "تأجيل",
     "militaryStatusServing": "قيد الخدمة",
     "militaryStatusNotApplicable": "غير مطلوب",
-    "cvLabel": "رابط السيرة الذاتية",
-    "cvPlaceholder": "ضع رابط Google Drive للسيرة الذاتية",
-    "cvHint": "تأكد من أن الرابط يعمل ومتاح للمشاهدة بدون طلب صلاحيات (Google Drive - Anyone with the link).",
+    "cvLabel": "ملف السيرة الذاتية",
+    "cvPlaceholder": "قم برفع ملف السيرة الذاتية",
+    "cvHint": "يرجى رفع ملف سيرة ذاتية محدّث بصيغة PDF أو DOC.",
+    "cvHintFile": "يرجى رفع ملف السيرة الذاتية بصيغة PDF أو DOC (بحد أقصى 10 ميجابايت).",
     "coverLetterLabel": "ملاحظات (اختياري)",
     "coverLetterPlaceholder": "اكتب رسالة التقديم الخاصة بك هنا...",
     "submitButton": "إرسال الطلب",
@@ -256,6 +257,7 @@
     "successMessage": "تم إرسال طلبك بنجاح! سنتواصل معك قريباً",
     "submitError": "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة لاحقاً.",
     "configurationError": "إعدادات البريد غير مكتملة. يرجى التواصل مع الدعم.",
-    "invalidCvLink": "يرجى إدخال رابط صحيح للسيرة الذاتية."
+    "invalidCvLink": "يرجى إدخال رابط صحيح للسيرة الذاتية.",
+    "missingCvFile": "يرجى رفع ملف السيرة الذاتية."
   }
 }

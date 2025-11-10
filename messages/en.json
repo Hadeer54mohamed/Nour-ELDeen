@@ -245,9 +245,10 @@
   "militaryStatusPostponed": "Postponed",
   "militaryStatusServing": "Currently serving",
   "militaryStatusNotApplicable": "Not applicable",
-  "cvLabel": "CV Link",
-  "cvPlaceholder": "Paste your Google Drive CV link",
-  "cvHint": "Make sure the link is publicly viewable (Google Drive → Anyone with the link).",
+  "cvLabel": "CV File",
+  "cvPlaceholder": "Upload your CV file",
+  "cvHint": "Upload a clear, up-to-date CV file in PDF or DOC format.",
+  "cvHintFile": "Upload your CV as a PDF or DOC file (max 10 MB).",
   "coverLetterLabel": "Notes (Optional)",
   "coverLetterPlaceholder": "Write your cover letter here...",
   "submitButton": "Submit Application",
@@ -255,6 +256,7 @@
   "successMessage": "Your application has been sent successfully! We will contact you soon",
   "submitError": "Something went wrong while sending your application. Please try again later.",
   "configurationError": "Email configuration is missing. Please contact support.",
-  "invalidCvLink": "Please enter a valid CV link."
+  "invalidCvLink": "Please enter a valid CV link.",
+  "missingCvFile": "Please upload your CV file."
  }
 }
