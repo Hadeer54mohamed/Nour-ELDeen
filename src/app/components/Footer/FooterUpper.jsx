@@ -56,7 +56,7 @@ const FooterUpper = () => {
           <div className="footer-col links">
             <h3>{t("quickLinks")}</h3>
             <ul>
-              <li><a href={`/${locale}`}>{tNav("home")}</a></li>
+              <li><a href={`/${locale}/magazine`}>{tNav("magazine")}</a></li>
               <li><a href={`/${locale}/products`}>{tNav("products")}</a></li>
               <li><a href={`/${locale}/about`}>{tNav("about")}</a></li>
               <li><a href={`/${locale}/branches`}>{tNav("branches")}</a></li>

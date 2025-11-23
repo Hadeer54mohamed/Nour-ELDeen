@@ -30,15 +30,15 @@ export default function MainNavbar({ menuOpen, closeMenu }) {
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li>
-            <Link href={`/${locale}`} onClick={closeMenu}>
+            <Link href={`/${locale}/magazine`} onClick={closeMenu}>
               <div className="nav-item">
                 <Image
-                  src="/icons/home.png"
-                  alt={t("home")}
+                  src="/icons/book1.png"
+                  alt={t("magazine")}
                   width={24}
                   height={24}
                 />
-                <span>{t("home")}</span>
+                <span>{t("magazine")}</span>
               </div>
             </Link>
           </li>
@@ -46,7 +46,7 @@ export default function MainNavbar({ menuOpen, closeMenu }) {
             <Link href={`/${locale}/about`} onClick={closeMenu}>
               <div className="nav-item">
                 <Image
-                  src="/icons/story.png"
+                  src="/icons/book.png"
                   alt={t("about")}
                   width={24}
                   height={24}

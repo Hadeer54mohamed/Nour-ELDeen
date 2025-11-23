@@ -3,7 +3,7 @@
     "welcometext": "Welcome to Nour El-Deen Food Products"
   },
   "nav": {
-    "home": "Home",
+    "magazine": "Magazine",
     "about": "About Us",
     "services": "Services",
     "products": "categories",
@@ -258,5 +258,9 @@
   "configurationError": "Email configuration is missing. Please contact support.",
   "invalidCvLink": "Please enter a valid CV link.",
   "missingCvFile": "Please upload your CV file."
+ },
+ "magazine": {
+  "title": "Magazine",
+  "description": "Enjoy special offers from Nour El-Deen on all products - best quality at the lowest price - available until the stock runs out."
  }
 }
