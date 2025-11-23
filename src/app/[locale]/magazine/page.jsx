@@ -28,7 +28,7 @@ const MagazinePage = () => {
     "/magazine/10.jpg",
   ];
 
-  const totalPages = Math.ceil(pages.length / 2);
+  const totalPages = isMobile ? pages.length : Math.ceil(pages.length / 2);
 
   // Detect mobile
   useEffect(() => {
@@ -41,7 +41,8 @@ const MagazinePage = () => {
   }, []);
 
   const nextPage = useCallback(() => {
-    if (isFlipping || currentPage >= totalPages - 1) return;
+    const maxPage = isMobile ? pages.length - 1 : Math.ceil(pages.length / 2) - 1;
+    if (isFlipping || currentPage >= maxPage) return;
     setIsFlipping(true);
     setFlipDirection("next");
     setHoverArea(null);
@@ -54,7 +55,7 @@ const MagazinePage = () => {
         setFlipDirection(null);
       }, 400);
     }, 400);
-  }, [currentPage, totalPages, isFlipping]);
+  }, [currentPage, isFlipping, isMobile, pages.length]);
 
   const prevPage = useCallback(() => {
     if (isFlipping || currentPage <= 0) return;
@@ -129,8 +130,9 @@ const MagazinePage = () => {
     }
   }, [nextPage, prevPage]);
 
-  const getLeftPageIndex = () => currentPage * 2;
-  const getRightPageIndex = () => currentPage * 2 + 1;
+  const getLeftPageIndex = () => isMobile ? currentPage : currentPage * 2;
+  const getRightPageIndex = () => isMobile ? currentPage + 1 : currentPage * 2 + 1;
+  const getMobileTotalPages = () => pages.length;
 
   return (
     <section className="magazine-page">
@@ -154,51 +156,69 @@ const MagazinePage = () => {
               </div>
 
               {/* Current Page Spread */}
-              <div className="page-spread">
-                {/* Left Page */}
-                <div className="page-left">
-                  {pages[getLeftPageIndex()] && (
-                    <img
-                      src={pages[getLeftPageIndex()]}
-                      alt={`Page ${getLeftPageIndex() + 1}`}
-                      className="page-image"
-                    />
-                  )}
-                  {!isFlipping && currentPage > 0 && !isMobile && (
-                    <div
-                      className="hover-area hover-area-prev"
-                      onMouseEnter={() => setHoverArea("prev")}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={prevPage}
-                    />
-                  )}
-                </div>
+              <div className={`page-spread ${isMobile ? 'mobile-view' : ''}`}>
+                {!isMobile ? (
+                  <>
+                    {/* Desktop: Two Pages */}
+                    {/* Left Page */}
+                    <div className="page-left">
+                      {pages[getLeftPageIndex()] && (
+                        <img
+                          src={pages[getLeftPageIndex()]}
+                          alt={`Page ${getLeftPageIndex() + 1}`}
+                          className="page-image"
+                        />
+                      )}
+                      {!isFlipping && currentPage > 0 && (
+                        <div
+                          className="hover-area hover-area-prev"
+                          onMouseEnter={() => setHoverArea("prev")}
+                          onMouseLeave={handleMouseLeave}
+                          onClick={prevPage}
+                        />
+                      )}
+                    </div>
 
-                {/* Binding Line */}
-                <div className="binding-line"></div>
+                    {/* Binding Line */}
+                    <div className="binding-line"></div>
 
-                {/* Right Page */}
-                <div className="page-right">
-                  {pages[getRightPageIndex()] && (
-                    <img
-                      src={pages[getRightPageIndex()]}
-                      alt={`Page ${getRightPageIndex() + 1}`}
-                      className="page-image"
-                    />
-                  )}
-                  {!isFlipping && currentPage < totalPages - 1 && !isMobile && (
-                    <div
-                      className="hover-area hover-area-next"
-                      onMouseEnter={() => setHoverArea("next")}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={nextPage}
-                    />
-                  )}
-                </div>
+                    {/* Right Page */}
+                    <div className="page-right">
+                      {pages[getRightPageIndex()] && (
+                        <img
+                          src={pages[getRightPageIndex()]}
+                          alt={`Page ${getRightPageIndex() + 1}`}
+                          className="page-image"
+                        />
+                      )}
+                      {!isFlipping && currentPage < Math.ceil(pages.length / 2) - 1 && (
+                        <div
+                          className="hover-area hover-area-next"
+                          onMouseEnter={() => setHoverArea("next")}
+                          onMouseLeave={handleMouseLeave}
+                          onClick={nextPage}
+                        />
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Mobile: Single Page */}
+                    <div className="page-single">
+                      {pages[getLeftPageIndex()] && (
+                        <img
+                          src={pages[getLeftPageIndex()]}
+                          alt={`Page ${getLeftPageIndex() + 1}`}
+                          className="page-image"
+                        />
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Page Curl Effect - Next */}
-              {!isFlipping && hoverArea === "next" && currentPage < totalPages - 1 && curlIntensity > 0 && (
+              {!isFlipping && !isMobile && hoverArea === "next" && currentPage < Math.ceil(pages.length / 2) - 1 && curlIntensity > 0 && (
                 <div
                   className="page-curl page-curl-next"
                   style={{
@@ -220,7 +240,7 @@ const MagazinePage = () => {
               )}
 
               {/* Page Curl Effect - Prev */}
-              {!isFlipping && hoverArea === "prev" && currentPage > 0 && curlIntensity > 0 && (
+              {!isFlipping && !isMobile && hoverArea === "prev" && currentPage > 0 && curlIntensity > 0 && (
                 <div
                   className="page-curl page-curl-prev"
                   style={{
@@ -304,7 +324,7 @@ const MagazinePage = () => {
                 ‹
               </button>
               <div className="page-indicators">
-                {Array.from({ length: totalPages }).map((_, index) => (
+                {Array.from({ length: isMobile ? pages.length : Math.ceil(pages.length / 2) }).map((_, index) => (
                   <button
                     key={index}
                     className={`page-dot ${index === currentPage ? "active" : ""}`}
@@ -341,7 +361,7 @@ const MagazinePage = () => {
               <button
                 className="control-btn"
                 onClick={nextPage}
-                disabled={isFlipping || currentPage >= totalPages - 1}
+                disabled={isFlipping || currentPage >= (isMobile ? pages.length - 1 : Math.ceil(pages.length / 2) - 1)}
                 aria-label="Next page"
               >
                 ›
