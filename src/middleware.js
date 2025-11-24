@@ -14,10 +14,11 @@ export default function middleware(request) {
     return NextResponse.redirect(url);
   }
 
-  // Skip middleware for static files, API routes, and non-locale paths
+  // Skip middleware for static files, API routes, Sanity Studio, and non-locale paths
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/studio") ||
     pathname.startsWith("/public") ||
     pathname.includes(".") // Skip files with extensions
   ) {
@@ -37,7 +38,7 @@ export default function middleware(request) {
   return intlMiddleware(request);
 }
 
-// Limit the middleware to paths that include the supported locales and exclude static assets
+// Limit the middleware to paths that include the supported locales and exclude static assets and studio
 export const config = {
-  matcher: ["/", "/(en|ar)/:path*", "/((?!_next|api|.*\\.).*)"],
+  matcher: ["/", "/(en|ar)/:path*", "/((?!_next|api|studio|.*\\.).*)"],
 };

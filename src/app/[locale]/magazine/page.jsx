@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { client, urlFor } from "../../../lib/sanity";
 import "../../../styles/magazine.scss";
 
 const MagazinePage = () => {
   const t = useTranslations("magazine");
+  const locale = useLocale();
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState(null);
@@ -14,19 +16,70 @@ const MagazinePage = () => {
   const containerRef = useRef(null);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
+  const [pages, setPages] = useState([]);
+  const [magazineTitle, setMagazineTitle] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
-  const pages = [
-    "/magazine/1.jpg",
-    "/magazine/2.jpg",
-    "/magazine/3.jpg",
-    "/magazine/4.jpg",
-    "/magazine/5.jpg",
-    "/magazine/6.jpg",
-    "/magazine/7.jpg",
-    "/magazine/8.jpg",
-    "/magazine/9.jpg",
-    "/magazine/10.jpg",
-  ];
+  // Check if mounted
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Fetch magazine data from Sanity
+  useEffect(() => {
+    const fetchMagazineData = async () => {
+      try {
+        const query = `*[_type == "magazine" && isActive == true] | order(publishedAt desc)[0] {
+          title,
+          pages[]
+        }`;
+
+        const data = await client.fetch(query);
+
+        if (data && data.pages && data.pages.length > 0) {
+          // Convert Sanity images to URLs
+          const imageUrls = data.pages.map((image) => urlFor(image).url());
+
+          setPages(imageUrls);
+          setMagazineTitle(data.title || t("title"));
+        } else {
+          // Fallback to default images if no data in Sanity
+          setPages([
+            "/magazine/1.jpg",
+            "/magazine/2.jpg",
+            "/magazine/3.jpg",
+            "/magazine/4.jpg",
+            "/magazine/5.jpg",
+            "/magazine/6.jpg",
+            "/magazine/7.jpg",
+            "/magazine/8.jpg",
+            "/magazine/9.jpg",
+            "/magazine/10.jpg",
+          ]);
+        }
+      } catch (error) {
+        console.error("Error fetching magazine data:", error);
+        // Fallback to default images
+        setPages([
+          "/magazine/1.jpg",
+          "/magazine/2.jpg",
+          "/magazine/3.jpg",
+          "/magazine/4.jpg",
+          "/magazine/5.jpg",
+          "/magazine/6.jpg",
+          "/magazine/7.jpg",
+          "/magazine/8.jpg",
+          "/magazine/9.jpg",
+          "/magazine/10.jpg",
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMagazineData();
+  }, [locale, t]);
 
   const totalPages = isMobile ? pages.length : Math.ceil(pages.length / 2);
 
@@ -41,7 +94,9 @@ const MagazinePage = () => {
   }, []);
 
   const nextPage = useCallback(() => {
-    const maxPage = isMobile ? pages.length - 1 : Math.ceil(pages.length / 2) - 1;
+    const maxPage = isMobile
+      ? pages.length - 1
+      : Math.ceil(pages.length / 2) - 1;
     if (isFlipping || currentPage >= maxPage) return;
     setIsFlipping(true);
     setFlipDirection("next");
@@ -73,33 +128,36 @@ const MagazinePage = () => {
     }, 400);
   }, [currentPage, isFlipping]);
 
-  const handleMouseMove = useCallback((e) => {
-    if (isMobile || isFlipping) return;
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (isMobile || isFlipping) return;
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const bookWidth = rect.width;
-    const bookHeight = rect.height;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const bookWidth = rect.width;
+      const bookHeight = rect.height;
 
-    // Check if mouse is in right half (next page area)
-    if (x > bookWidth / 2 && currentPage < totalPages - 1) {
-      setHoverArea("next");
-      const distanceFromEdge = Math.min(x - bookWidth / 2, 200);
-      const intensity = Math.min(distanceFromEdge / 200, 0.9);
-      setCurlIntensity(intensity);
-    }
-    // Check if mouse is in left half (prev page area)
-    else if (x < bookWidth / 2 && currentPage > 0) {
-      setHoverArea("prev");
-      const distanceFromEdge = Math.min(bookWidth / 2 - x, 200);
-      const intensity = Math.min(distanceFromEdge / 200, 0.9);
-      setCurlIntensity(intensity);
-    } else {
-      setHoverArea(null);
-      setCurlIntensity(0);
-    }
-  }, [isMobile, isFlipping, currentPage, totalPages]);
+      // Check if mouse is in right half (next page area)
+      if (x > bookWidth / 2 && currentPage < totalPages - 1) {
+        setHoverArea("next");
+        const distanceFromEdge = Math.min(x - bookWidth / 2, 200);
+        const intensity = Math.min(distanceFromEdge / 200, 0.9);
+        setCurlIntensity(intensity);
+      }
+      // Check if mouse is in left half (prev page area)
+      else if (x < bookWidth / 2 && currentPage > 0) {
+        setHoverArea("prev");
+        const distanceFromEdge = Math.min(bookWidth / 2 - x, 200);
+        const intensity = Math.min(distanceFromEdge / 200, 0.9);
+        setCurlIntensity(intensity);
+      } else {
+        setHoverArea(null);
+        setCurlIntensity(0);
+      }
+    },
+    [isMobile, isFlipping, currentPage, totalPages]
+  );
 
   const handleMouseLeave = useCallback(() => {
     if (isMobile) return;
@@ -114,25 +172,50 @@ const MagazinePage = () => {
     touchStartY.current = touch.clientY;
   }, []);
 
-  const handleTouchEnd = useCallback((e) => {
-    if (!e.changedTouches[0]) return;
-    const touch = e.changedTouches[0];
-    const deltaX = touch.clientX - touchStartX.current;
-    const deltaY = touch.clientY - touchStartY.current;
+  const handleTouchEnd = useCallback(
+    (e) => {
+      if (!e.changedTouches[0]) return;
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX.current;
+      const deltaY = touch.clientY - touchStartY.current;
 
-    // Only handle horizontal swipes
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-      if (deltaX > 0) {
-        prevPage();
-      } else {
-        nextPage();
+      // Only handle horizontal swipes
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          prevPage();
+        } else {
+          nextPage();
+        }
       }
-    }
-  }, [nextPage, prevPage]);
+    },
+    [nextPage, prevPage]
+  );
 
-  const getLeftPageIndex = () => isMobile ? currentPage : currentPage * 2;
-  const getRightPageIndex = () => isMobile ? currentPage + 1 : currentPage * 2 + 1;
+  const getLeftPageIndex = () => (isMobile ? currentPage : currentPage * 2);
+  const getRightPageIndex = () =>
+    isMobile ? currentPage + 1 : currentPage * 2 + 1;
   const getMobileTotalPages = () => pages.length;
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
+
+  if (loading) {
+    return (
+      <section className="magazine-page">
+        <div className="container">
+          <h1>{t("title")}</h1>
+          <p>{t("description")}</p>
+          <div className="magazine-wrapper">
+            <div className="loading-spinner">
+              <p>Loading magazine...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="magazine-page">
@@ -156,7 +239,7 @@ const MagazinePage = () => {
               </div>
 
               {/* Current Page Spread */}
-              <div className={`page-spread ${isMobile ? 'mobile-view' : ''}`}>
+              <div className={`page-spread ${isMobile ? "mobile-view" : ""}`}>
                 {!isMobile ? (
                   <>
                     {/* Desktop: Two Pages */}
@@ -191,14 +274,15 @@ const MagazinePage = () => {
                           className="page-image"
                         />
                       )}
-                      {!isFlipping && currentPage < Math.ceil(pages.length / 2) - 1 && (
-                        <div
-                          className="hover-area hover-area-next"
-                          onMouseEnter={() => setHoverArea("next")}
-                          onMouseLeave={handleMouseLeave}
-                          onClick={nextPage}
-                        />
-                      )}
+                      {!isFlipping &&
+                        currentPage < Math.ceil(pages.length / 2) - 1 && (
+                          <div
+                            className="hover-area hover-area-next"
+                            onMouseEnter={() => setHoverArea("next")}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={nextPage}
+                          />
+                        )}
                     </div>
                   </>
                 ) : (
@@ -218,48 +302,60 @@ const MagazinePage = () => {
               </div>
 
               {/* Page Curl Effect - Next */}
-              {!isFlipping && !isMobile && hoverArea === "next" && currentPage < Math.ceil(pages.length / 2) - 1 && curlIntensity > 0 && (
-                <div
-                  className="page-curl page-curl-next"
-                  style={{
-                    transform: `rotateY(${-curlIntensity * 25}deg) translateZ(${curlIntensity * 30}px)`,
-                    opacity: Math.min(curlIntensity * 1.2, 1),
-                  }}
-                >
-                  <div className="curl-content">
-                    {pages[getLeftPageIndex() + 2] && (
-                      <img
-                        src={pages[getLeftPageIndex() + 2]}
-                        alt="Next page preview"
-                        className="page-image"
-                      />
-                    )}
+              {!isFlipping &&
+                !isMobile &&
+                hoverArea === "next" &&
+                currentPage < Math.ceil(pages.length / 2) - 1 &&
+                curlIntensity > 0 && (
+                  <div
+                    className="page-curl page-curl-next"
+                    style={{
+                      transform: `rotateY(${
+                        -curlIntensity * 25
+                      }deg) translateZ(${curlIntensity * 30}px)`,
+                      opacity: Math.min(curlIntensity * 1.2, 1),
+                    }}
+                  >
+                    <div className="curl-content">
+                      {pages[getLeftPageIndex() + 2] && (
+                        <img
+                          src={pages[getLeftPageIndex() + 2]}
+                          alt="Next page preview"
+                          className="page-image"
+                        />
+                      )}
+                    </div>
+                    <div className="curl-shadow"></div>
                   </div>
-                  <div className="curl-shadow"></div>
-                </div>
-              )}
+                )}
 
               {/* Page Curl Effect - Prev */}
-              {!isFlipping && !isMobile && hoverArea === "prev" && currentPage > 0 && curlIntensity > 0 && (
-                <div
-                  className="page-curl page-curl-prev"
-                  style={{
-                    transform: `rotateY(${curlIntensity * 25}deg) translateZ(${curlIntensity * 30}px)`,
-                    opacity: Math.min(curlIntensity * 1.2, 1),
-                  }}
-                >
-                  <div className="curl-content">
-                    {pages[getRightPageIndex() - 2] && (
-                      <img
-                        src={pages[getRightPageIndex() - 2]}
-                        alt="Previous page preview"
-                        className="page-image"
-                      />
-                    )}
+              {!isFlipping &&
+                !isMobile &&
+                hoverArea === "prev" &&
+                currentPage > 0 &&
+                curlIntensity > 0 && (
+                  <div
+                    className="page-curl page-curl-prev"
+                    style={{
+                      transform: `rotateY(${
+                        curlIntensity * 25
+                      }deg) translateZ(${curlIntensity * 30}px)`,
+                      opacity: Math.min(curlIntensity * 1.2, 1),
+                    }}
+                  >
+                    <div className="curl-content">
+                      {pages[getRightPageIndex() - 2] && (
+                        <img
+                          src={pages[getRightPageIndex() - 2]}
+                          alt="Previous page preview"
+                          className="page-image"
+                        />
+                      )}
+                    </div>
+                    <div className="curl-shadow"></div>
                   </div>
-                  <div className="curl-shadow"></div>
-                </div>
-              )}
+                )}
 
               {/* Flipping Animation */}
               {isFlipping && (
@@ -324,10 +420,14 @@ const MagazinePage = () => {
                 ‹
               </button>
               <div className="page-indicators">
-                {Array.from({ length: isMobile ? pages.length : Math.ceil(pages.length / 2) }).map((_, index) => (
+                {Array.from({
+                  length: isMobile ? pages.length : Math.ceil(pages.length / 2),
+                }).map((_, index) => (
                   <button
                     key={index}
-                    className={`page-dot ${index === currentPage ? "active" : ""}`}
+                    className={`page-dot ${
+                      index === currentPage ? "active" : ""
+                    }`}
                     onClick={() => {
                       if (!isFlipping) {
                         if (index > currentPage) {
@@ -361,7 +461,13 @@ const MagazinePage = () => {
               <button
                 className="control-btn"
                 onClick={nextPage}
-                disabled={isFlipping || currentPage >= (isMobile ? pages.length - 1 : Math.ceil(pages.length / 2) - 1)}
+                disabled={
+                  isFlipping ||
+                  currentPage >=
+                    (isMobile
+                      ? pages.length - 1
+                      : Math.ceil(pages.length / 2) - 1)
+                }
                 aria-label="Next page"
               >
                 ›

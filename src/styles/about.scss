@@ -5,11 +5,12 @@ $secondary-color: #b44041;
 .about-page {
   padding: 100px 0;
   background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  font-family:'Noor Regular', sans-serif;
+  font-family: "Noor Regular", sans-serif;
   position: relative;
   overflow: hidden;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: "";
     position: absolute;
     width: 400px;
@@ -21,13 +22,21 @@ $secondary-color: #b44041;
   &::before {
     top: -150px;
     left: -100px;
-    background: radial-gradient(circle, rgba(180, 64, 65, 0.08) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(180, 64, 65, 0.08) 0%,
+      transparent 70%
+    );
   }
 
   &::after {
     bottom: -150px;
     right: -100px;
-    background: radial-gradient(circle, rgba(12, 103, 118, 0.08) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(12, 103, 118, 0.08) 0%,
+      transparent 70%
+    );
   }
 
   .container {
