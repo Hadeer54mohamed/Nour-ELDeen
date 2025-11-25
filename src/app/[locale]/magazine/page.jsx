@@ -11,21 +11,16 @@ const MagazinePage = () => {
   const [hoverArea, setHoverArea] = useState(null);
   const [curlIntensity, setCurlIntensity] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef(null);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
   const pages = [
-    "/magazine/1.jpg",
-    "/magazine/2.jpg",
-    "/magazine/3.jpg",
-    "/magazine/4.jpg",
-    "/magazine/5.jpg",
-    "/magazine/6.jpg",
-    "/magazine/7.jpg",
-    "/magazine/8.jpg",
-    "/magazine/9.jpg",
-    "/magazine/10.jpg",
+    "/magazine/1.jpg","/magazine/2.jpg","/magazine/3.jpg",
+    "/magazine/4.jpg","/magazine/5.jpg","/magazine/6.jpg",
+    "/magazine/7.jpg","/magazine/8.jpg","/magazine/9.jpg",
+    "/magazine/10.jpg"
   ];
 
   const totalPages = isMobile ? pages.length : Math.ceil(pages.length / 2);
@@ -38,6 +33,25 @@ const MagazinePage = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Detect fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+    
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+    };
   }, []);
 
   const nextPage = useCallback(() => {
@@ -134,6 +148,78 @@ const MagazinePage = () => {
   const getRightPageIndex = () => isMobile ? currentPage + 1 : currentPage * 2 + 1;
   const getMobileTotalPages = () => pages.length;
 
+  const downloadPDF = async () => {
+    try {
+      const { jsPDF } = await import("jspdf");
+      const pdf = new jsPDF();
+      let pdfInitialized = false;
+
+      // تحميل جميع الصور وإضافتها إلى PDF واحد
+      for (let i = 0; i < pages.length; i++) {
+        await new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+
+          img.onload = () => {
+            try {
+              const imgWidth = img.naturalWidth || img.width;
+              const imgHeight = img.naturalHeight || img.height;
+              
+              // تحميل الصورة كـ blob ثم تحويلها إلى base64
+              fetch(pages[i])
+                .then(response => response.blob())
+                .then(blob => {
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    const imgData = reader.result;
+                    
+                    if (!pdfInitialized) {
+                      // تهيئة PDF بحجم الصورة الأولى
+                      pdf.internal.pageSize.setWidth(imgWidth);
+                      pdf.internal.pageSize.setHeight(imgHeight);
+                      pdfInitialized = true;
+                    }
+                    
+                    // إضافة صفحة جديدة إذا لم تكن الأولى
+                    if (i > 0) {
+                      pdf.addPage([imgWidth, imgHeight]);
+                    }
+                    
+                    // إضافة الصورة بحجمها الأصلي بدون أي تعديل أو خلفية
+                    pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
+                    
+                    resolve();
+                  };
+                  reader.readAsDataURL(blob);
+                })
+                .catch(err => reject(err));
+            } catch (err) {
+              reject(err);
+            }
+          };
+          
+          img.onerror = () => reject(new Error(`Failed to load image: ${pages[i]}`));
+          img.src = pages[i];
+        });
+      }
+      
+      // حفظ PDF بعد إضافة جميع الصور
+      pdf.save("magazine.pdf");
+    } catch (error) {
+      console.error(error);
+      alert("حدث خطأ أثناء إنشاء PDF. يرجى المحاولة مرة أخرى.");
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
   return (
     <section className="magazine-page">
       <div className="container">
@@ -142,6 +228,16 @@ const MagazinePage = () => {
 
         <div className="magazine-wrapper">
           <div className="paper-bg">
+            {/* Fullscreen Exit Button */}
+            {isFullscreen && (
+              <button
+                className="fullscreen-exit-btn"
+                onClick={toggleFullscreen}
+                aria-label="Exit fullscreen"
+              >
+                ✕
+              </button>
+            )}
             <div
               ref={containerRef}
               className="flipbook-container"
@@ -367,6 +463,28 @@ const MagazinePage = () => {
                 ›
               </button>
             </div>
+
+            {/* Extra Controls */}
+            {!isMobile && (
+              <div className="extra-controls">
+                <button
+                  className="control-btn extra-btn"
+                  onClick={toggleFullscreen}
+                  aria-label="Toggle fullscreen"
+                >
+                  <span className="btn-icon">⛶</span>
+                  <span className="btn-text">تكبير الشاشة</span>
+                </button>
+                <button
+                  className="control-btn extra-btn"
+                  onClick={downloadPDF}
+                  aria-label="Download PDF"
+                >
+                  <span className="btn-icon">⬇</span>
+                  <span className="btn-text">تنزيل</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
